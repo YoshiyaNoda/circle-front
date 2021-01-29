@@ -21,10 +21,12 @@ export default {
   // text-align: center;
   color: #2c3e50;
   display: flex;
+  justify-content: space-between;
   min-height: 1000px;
 }
 
 body {
+  background-color: black;
   margin: 0;
 }
 
