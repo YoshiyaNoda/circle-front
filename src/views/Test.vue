@@ -14,10 +14,10 @@ export default {
   },
   methods: {
     testReq() {
-      const url = "localhost:8080/api/testmsg";
+      const url = "http://localhost:8000/api/testmsg";
       this.$axios.get(url).then(res => {
         this.msg = res.data;
-      }).cache(e => {
+      }).catch(e => {
         console.log(e);
       });
     }
