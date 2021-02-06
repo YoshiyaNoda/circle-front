@@ -8,6 +8,14 @@ Vue.config.productionTip = false;
 
 Vue.prototype.$axios = axios;
 
+const store = {
+  token: '',
+  email: '',
+  name: ''
+};
+
+Vue.prototype.$store = store;
+
 new Vue({
   router,
   render: h => h(App)

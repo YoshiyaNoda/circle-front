@@ -16,9 +16,17 @@ export default {
     };
   },
   mounted() {
-    this.token = this.$route.query.token;
-    this.email = this.$route.query.email;
-    this.name = this.$route.query.name;
+    this.setUserData();
+    this.token = this.$store.token;
+    this.email = this.$store.email;
+    this.name = this.$store.name;
+  },
+  methods: {
+    setUserData() {
+      this.$store.token = this.$route.query.token;
+      this.$store.email = this.$route.query.email;
+      this.$store.name = this.$route.query.name;
+    }
   }
 }
 </script>
