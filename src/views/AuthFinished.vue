@@ -17,14 +17,8 @@ export default {
   },
   mounted() {
     this.$store.appendObservable(this);
-    this.setUserData();
-    console.log(this.$store);
+    this.$store.setUserData(this.$route.query);
   },
-  methods: {
-    setUserData() {
-      this.$store.setUserData(this.$route.query);
-    }
-  }
 }
 </script>
 
