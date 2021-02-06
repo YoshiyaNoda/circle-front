@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import LP from "../views/LandingPage.vue";
 import WebSite from "../views/WebSite.vue";
 import Test from "../views/Test.vue";
+import AuthFinished from "../views/AuthFinished.vue";
 
 Vue.use(VueRouter);
 
@@ -30,7 +31,7 @@ const routes = [
   {
     path: "/auth/finished",
     name: "AuthFinished",
-    component: "AuthFinished",
+    component: AuthFinished,
   },
   // --------------------------------------
   {
