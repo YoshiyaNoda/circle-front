@@ -14,9 +14,11 @@ export default {
   },
   methods: {
     testReq() {
-      const url = "http://localhost:8000/api/testmsg";
+      const provider = 'google';
+      const url = "http://localhost:8000/api/fetch/" + provider + "/oauth-target-url-test";
       this.$axios.get(url).then(res => {
         this.msg = res.data;
+        window.location.href = res.data;
       }).catch(e => {
         console.log(e);
       });

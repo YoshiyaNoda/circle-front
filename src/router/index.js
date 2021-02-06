@@ -27,6 +27,11 @@ const routes = [
     component: WebSite,
   },
   // -----こっからは認証を挟むルーティング-------
+  {
+    path: "/auth/finished",
+    name: "AuthFinished",
+    component: "AuthFinished",
+  },
   // --------------------------------------
   {
     path: "/*",
