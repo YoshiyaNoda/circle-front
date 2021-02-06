@@ -14,19 +14,19 @@ const store = {
   name: '',
   setUserData(queries) {
     this.updateUserData(this, queries);
-    this.updateObserving(queries);
+    this.updateObservable(queries);
   },
-  observingComponetns: [],
-  updateObserving(queries) {
-    const length = this.observingComponetns.length;
+  ObservableComponetns: [],
+  updateObservable(queries) {
+    const length = this.ObservableComponetns.length;
     console.log('number of components = ' + length);
     for(let i=0; i < length; i++) {
-      this.updateUserData(this.observingComponetns[i], queries);
+      this.updateUserData(this.ObservableComponetns[i], queries);
     }
   },
-  appendObserving(component) {
+  appendObservable(component) {
     // 重複しないように気をつけたい
-    this.observingComponetns.push(component);
+    this.ObservableComponetns.push(component);
   },
   updateUserData(ele, queries) {
     ele.token = queries.token;
