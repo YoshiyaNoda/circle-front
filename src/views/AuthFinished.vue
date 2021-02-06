@@ -10,22 +10,19 @@
 export default {
   data() {
     return {
-      'token': 'nothing',
-      'email': 'nothing',
-      'name': 'nothing',
+      'token': this.$store.token,
+      'email': this.$store.email,
+      'name': this.$store.name,
     };
   },
   mounted() {
+    this.$store.appendObserving(this);
     this.setUserData();
-    this.token = this.$store.token;
-    this.email = this.$store.email;
-    this.name = this.$store.name;
+    console.log(this.$store);
   },
   methods: {
     setUserData() {
-      this.$store.token = this.$route.query.token;
-      this.$store.email = this.$route.query.email;
-      this.$store.name = this.$route.query.name;
+      this.$store.setUserData(this.$route.query);
     }
   }
 }

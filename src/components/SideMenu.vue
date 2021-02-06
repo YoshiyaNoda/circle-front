@@ -18,6 +18,9 @@
         <li>
           <router-link to="/create">Create Web Site</router-link>
         </li>
+        <li>
+          <p style="color: white;">{{ name }}</p>
+        </li>
       </ul>
     </div>
   </div>
@@ -25,7 +28,16 @@
 
 <script>
 export default {
-
+  mounted() {
+    this.$store.appendObserving(this);
+  },
+  data() {
+    return {
+      'token': this.$store.token,
+      'email': this.$store.email,
+      'name': this.$store.name,
+    };
+  }
 }
 </script>
 
