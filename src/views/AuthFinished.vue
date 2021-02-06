@@ -16,7 +16,7 @@ export default {
     };
   },
   mounted() {
-    this.$store.appendObserving(this);
+    this.$store.appendObservable(this);
     this.setUserData();
     console.log(this.$store);
   },
