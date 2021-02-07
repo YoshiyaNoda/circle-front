@@ -7,6 +7,7 @@ import axios from "axios";
 Vue.config.productionTip = false;
 
 Vue.prototype.$axios = axios;
+Vue.prototype.$API_URL = "http://localhost:8000/api";
 
 const store = {
   token: '',

@@ -15,7 +15,7 @@ export default {
   methods: {
     testReq() {
       const provider = 'google';
-      const url = "http://localhost:8000/api/fetch/" + provider + "/oauth-target-url-test";
+      const url = this.$API_URL + "/fetch/" + provider + "/oauth-target-url-test";
       this.$axios.get(url).then(res => {
         this.msg = res.data;
         window.location.href = res.data;
