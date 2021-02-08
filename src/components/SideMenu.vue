@@ -4,7 +4,7 @@
       <h1>LOGO</h1>
       <ul>
         <li>
-          <router-link to="/login">Sign up</router-link>
+          <router-link to="/login">Sign in/up</router-link>
         </li>
         <li>
           <router-link to="/">Home</router-link>
