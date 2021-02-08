@@ -4,6 +4,7 @@ import LP from "../views/LandingPage.vue";
 import WebSite from "../views/WebSite.vue";
 import Test from "../views/Test.vue";
 import AuthFinished from "../views/AuthFinished.vue";
+import AuthFailed from "../views/AuthFailed.vue";
 
 Vue.use(VueRouter);
 
@@ -27,13 +28,16 @@ const routes = [
     name: "WebSite",
     component: WebSite,
   },
-  // -----こっからは認証を挟むルーティング-------
+  {
+    path: "/auth/failed",
+    name: "AuthFailed",
+    component: AuthFailed,
+  },
   {
     path: "/auth/finished",
     name: "AuthFinished",
     component: AuthFinished,
   },
-  // --------------------------------------
   {
     path: "/*",
     name: "LP",
