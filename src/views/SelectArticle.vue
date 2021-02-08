@@ -6,14 +6,16 @@
         <li v-for="article in articleList" :key="article.id">{{ article.title }}</li>
       </ul>
     </div>
-    <div class="btn-container">
-      <button>新規作成</button>
-    </div>
+    <ArticleCreate />
   </div>
 </template>
 
 <script>
+import ArticleCreate from '@/components/ArticleCreate';
 export default {
+  components: {
+    ArticleCreate
+  },
   data() {
     return {
       'articleList': []
