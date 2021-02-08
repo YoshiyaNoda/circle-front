@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import LP from "../views/LandingPage.vue";
 import WebSite from "../views/WebSite.vue";
 import Test from "../views/Test.vue";
+import Login from "../views/Login.vue";
 import AuthFinished from "../views/AuthFinished.vue";
 import AuthFailed from "../views/AuthFailed.vue";
 
@@ -22,6 +23,11 @@ const routes = [
     path: "/test",
     name: "Test",
     component: Test,
+  },
+  {
+    path: "/login",
+    name: "Login",
+    component: Login,
   },
   {
     path: "/auth/failed",
