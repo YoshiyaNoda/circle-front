@@ -11,6 +11,7 @@
 import SideMenu from './components/SideMenu.vue';
 export default {
   components: { SideMenu }
+  // mountedでクッキーの取得をする。
 }
 </script>
 
