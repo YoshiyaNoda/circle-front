@@ -2,11 +2,11 @@
   <div :class="{'article-create-wrapper': true, 'active': flag}">
     <!-- クラス名がwrapperだと親コンポーネントのスタイルが適用されてしまう。 -->
     <div class="btn-container">
-      <button @click="turnOn">新規作成</button>
+      <button @click="activate">新規作成</button>
     </div>
     <div class="article-create-modal">
-      <p>{{ msg }}</p>
-      <button @click="turnOff">キャンセル</button>
+      <p>{{ msg ? msg : "新しい記事を作成" }}</p>
+      <button @click="refresh">キャンセル</button>
       <div class="input-container">
         <label>タイトル</label>
         <input type="text" v-model="title">
@@ -35,11 +35,8 @@ export default {
     }
   },
   methods: {
-    turnOn() {
+    activate() {
       this.flag = true
-    },
-    turnOff() {
-      this.flag = false
     },
     checkDuplication() {
       const length = this.$parent.articleList.length;
@@ -75,7 +72,7 @@ export default {
           this.refresh()
         } else if(this.validation() === "empty") {
           this.msg = "空のタイトル, URLは送信できません。"
-        } else if(this.validation() === "dupulicate") {
+        } else if(this.validation() === "duplicate") {
           this.msg = "タイトルとURLが他のデータと重複しています。"
         } else {
           this.msg = "エラー"
