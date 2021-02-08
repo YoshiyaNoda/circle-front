@@ -16,7 +16,7 @@
 export default {
   methods: {
     async redirectToOAuth(provider) {
-      const url = this.$API_URL + "/fetch/" + provider + "/oauth-target-url-test";
+      const url = "/fetch/" + provider + "/oauth-target-url-test";
       await this.$axios.get(url).then(res => {
         window.location.href = res.data;
       }).catch(e => {

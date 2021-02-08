@@ -6,8 +6,10 @@ import axios from "axios";
 
 Vue.config.productionTip = false;
 
-Vue.prototype.$axios = axios;
-Vue.prototype.$API_URL = "http://localhost:8000/api";
+Vue.prototype.$axios = axios.create({
+  baseURL: "http://localhost:8000/api",
+  timeout: 10000
+});
 
 const store = {
   token: '',
