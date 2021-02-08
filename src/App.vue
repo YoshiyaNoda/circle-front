@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <SideMenu />
-    <router-view />
+    <div class="maincontentscontainer">
+      <router-view />
+    </div>
   </div>
 </template>
 
@@ -29,5 +31,7 @@ body {
   background-color: black;
   margin: 0;
 }
-
+.maincontentscontainer {
+  width: 100%;
+}
 </style>

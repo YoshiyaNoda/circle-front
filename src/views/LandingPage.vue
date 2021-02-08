@@ -32,7 +32,7 @@ export default {
 
 <style lang="scss" scoped>
 .container {
-  width: 85%;
+  width: 100%;
   > .content {
     padding: 30px;
     color: white;
