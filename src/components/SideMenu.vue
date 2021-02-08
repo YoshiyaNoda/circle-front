@@ -10,10 +10,10 @@
           <router-link to="/">Home</router-link>
         </li>
         <li>
-          <router-link to="/website/example">Website</router-link>
+          <router-link to="/create">Create Web Site</router-link>
         </li>
         <li>
-          <router-link to="/create">Create Web Site</router-link>
+          <router-link to="/website">Sample</router-link>
         </li>
         <li>
           <p style="color: white;">{{ name }}</p>

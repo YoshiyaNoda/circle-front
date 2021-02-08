@@ -34,6 +34,11 @@ const routes = [
     component: AuthFinished,
   },
   {
+    path: "/website",
+    name: "WebSite",
+    component: WebSite,
+  },
+  {
     path: "/website/*",
     name: "WebSite",
     component: WebSite,
