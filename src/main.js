@@ -35,6 +35,9 @@ const store = {
     ele.token = queries.token;
     ele.email = queries.email;
     ele.name = queries.name;
+  },
+  checkTokenIsSet() {
+    return this.token;
   }
 };
 

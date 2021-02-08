@@ -24,13 +24,17 @@ export default {
   },
   methods: {
     async fetchArticleList() {
-      // tokenがあるかどうかを確認する処理をする。
-      const url = "fetch-article-list";
-      const params = new URLSearchParams();
-      params.append('token', this.$store.token);
-      await this.$axios.post(url, params).then(res => {
-        this.articleList = res.data;
-      });
+      if(this.$store.checkTokenIsSet()) {
+        // tokenがあるかどうかを確認する処理をする。
+        const url = "fetch-article-list";
+        const params = new URLSearchParams();
+        params.append('token', this.$store.token);
+        await this.$axios.post(url, params).then(res => {
+          this.articleList = res.data;
+        });
+      } else {
+        this.$router.push({ path: '/login' });
+      }
     }
   }
 }
