@@ -15,6 +15,9 @@
         <label>URL</label>
         <input type="text" v-model="url">
       </div>
+      <div class="create-btn-container">
+        <button @click="create">作成</button>
+      </div>
     </div>
     <div id="overlay">
     </div>
@@ -48,7 +51,7 @@ export default {
       return false
     },
     validation() {
-      if(this.title && this.url) {
+      if(this.title === '' || this.url === '') {
         return "empty"
       } else if(this.checkDuplication()) {
         return "duplicate"
@@ -56,7 +59,7 @@ export default {
       return "ok";
     },
     async create() {
-      if(this.$store.checkIsTokenSet()) {
+      if(this.$store.checkTokenIsSet()) {
         if(this.validation() === "ok") {
           const url = "create-article"
           const params = new URLSearchParams()
