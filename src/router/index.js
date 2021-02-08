@@ -24,11 +24,6 @@ const routes = [
     component: Test,
   },
   {
-    path: "/website/*",
-    name: "WebSite",
-    component: WebSite,
-  },
-  {
     path: "/auth/failed",
     name: "AuthFailed",
     component: AuthFailed,
@@ -37,6 +32,11 @@ const routes = [
     path: "/auth/finished",
     name: "AuthFinished",
     component: AuthFinished,
+  },
+  {
+    path: "/website/*",
+    name: "WebSite",
+    component: WebSite,
   },
   {
     path: "/*",
