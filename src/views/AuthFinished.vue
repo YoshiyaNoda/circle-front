@@ -1,8 +1,6 @@
 <template>
   <div class="wrapper">
-    <p>{{ token }}</p>
-    <p>{{ email }}</p>
-    <p>{{ name }}</p>
+    <p>認証成功</p>
   </div>
 </template>
 
@@ -18,6 +16,7 @@ export default {
   mounted() {
     this.$store.appendObservable(this);
     this.$store.setUserData(this.$route.query);
+    this.$router.push({ path: '/auth/select-articles' });
   },
 }
 </script>
