@@ -6,7 +6,7 @@
     </div>
     <div class="login">
       <div class="loginBtnContainer">
-        <button><img src="@/assets/btn_google_signin_light_normal_web.png" alt=""></button> 
+        <button @click="redirectToOAuth('google')"><img src="@/assets/btn_google_signin_light_normal_web.png" alt=""></button> 
       </div>
     </div>
   </div>
@@ -14,7 +14,16 @@
 
 <script>
 export default {
-
+  methods: {
+    async redirectToOAuth(provider) {
+      const url = this.$API_URL + "/fetch/" + provider + "/oauth-target-url-test";
+      await this.$axios.get(url).then(res => {
+        window.location.href = res.data;
+      }).catch(e => {
+        console.log(e);
+      });
+    }
+  }
 }
 </script>
 

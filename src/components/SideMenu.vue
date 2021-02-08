@@ -13,9 +13,6 @@
           <router-link to="/website/example">Website</router-link>
         </li>
         <li>
-          <router-link to="/test">Test</router-link>
-        </li>
-        <li>
           <router-link to="/create">Create Web Site</router-link>
         </li>
         <li>

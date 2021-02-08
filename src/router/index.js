@@ -2,7 +2,6 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import LP from "../views/LandingPage.vue";
 import WebSite from "../views/WebSite.vue";
-import Test from "../views/Test.vue";
 import Login from "../views/Login.vue";
 import AuthFinished from "../views/AuthFinished.vue";
 import AuthFailed from "../views/AuthFailed.vue";
@@ -18,11 +17,6 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/About.vue"),
-  },
-  {
-    path: "/test",
-    name: "Test",
-    component: Test,
   },
   {
     path: "/login",
