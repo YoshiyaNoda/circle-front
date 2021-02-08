@@ -5,7 +5,16 @@
       <button @click="turnOn">新規作成</button>
     </div>
     <div class="article-create-modal">
+      <p>{{ msg }}</p>
       <button @click="turnOff">キャンセル</button>
+      <div class="input-container">
+        <label>タイトル</label>
+        <input type="text" v-model="title">
+      </div>
+      <div class="input-container">
+        <label>URL</label>
+        <input type="text" v-model="url">
+      </div>
     </div>
     <div id="overlay">
     </div>
@@ -16,7 +25,10 @@
 export default {
   data() {
     return {
-      flag: false
+      flag: false,
+      title: '',
+      url: '',
+      msg: '',
     }
   },
   methods: {
@@ -25,6 +37,52 @@ export default {
     },
     turnOff() {
       this.flag = false
+    },
+    checkDuplication() {
+      const length = this.$parent.articleList.length;
+      for(let i = 0; i < length; i++) {
+        if(this.$parent.articleList[i].title === this.title || this.$parent.articleList[i].url === this.url) {
+          return true
+        }
+      }
+      return false
+    },
+    validation() {
+      if(this.title && this.url) {
+        return "empty"
+      } else if(this.checkDuplication()) {
+        return "duplicate"
+      }
+      return "ok";
+    },
+    async create() {
+      if(this.$store.checkIsTokenSet()) {
+        if(this.validation() === "ok") {
+          const url = "create-article"
+          const params = new URLSearchParams()
+          params.append('title', this.title)
+          params.append('url', this.url)
+          await this.$axios.post(url, params).then(_ => {
+            console.log(_);
+          }).catch(e => {
+            console.log(e)
+            alert("送信に失敗しました。")
+          })
+          this.refresh()
+        } else if(this.validation() === "empty") {
+          this.msg = "空のタイトル, URLは送信できません。"
+        } else if(this.validation() === "dupulicate") {
+          this.msg = "タイトルとURLが他のデータと重複しています。"
+        } else {
+          this.msg = "エラー"
+        }
+      } else {
+        this.$router.push({ path: '/login' })
+      }
+    },
+    refresh() {
+      Object.assign(this.$data, this.$options.data.call(this)) //dataの初期化
+      this.$parent.fetchArticleList()
     }
   }
 }
