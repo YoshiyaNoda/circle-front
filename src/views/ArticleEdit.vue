@@ -2,7 +2,7 @@
   <div class="article-edit-wrapper">
     <h1>記事の編集</h1>
     <div class="main-editor-container">
-      <div class="editor" v-for="json in jsonData" :key="json.order">{{ json.name }}</div>
+      <div class="editor" v-for="data in jsonData" :key="data.order">{{ data.name }}</div>
     </div>
   </div>
 </template>
@@ -24,7 +24,7 @@ export default {
       const url = "fetch-article-data"
       const params = new URLSearchParams()
       await this.$axios.post(url, params).then(res => {
-        this.json = res.data.json
+        this.jsonData = JSON.parse(res.data.json)
         this.title = res.data.title
         this.url = res.data.url
       }).catch(e => {
