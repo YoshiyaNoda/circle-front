@@ -17,12 +17,14 @@ export default {
     }
   },
   mounted() {
-
+    this.fetchArticleData()
   },
   methods: {
     async fetchArticleData() {
       const url = "fetch-article-data"
       const params = new URLSearchParams()
+      params.append('token', this.$store.token)
+      params.append('articleId', this.$store.selectedArticleId)
       await this.$axios.post(url, params).then(res => {
         this.jsonData = JSON.parse(res.data.json)
         this.title = res.data.title
