@@ -21,18 +21,22 @@ export default {
   },
   methods: {
     async fetchArticleData() {
-      const url = "fetch-article-data"
-      const params = new URLSearchParams()
-      params.append('token', this.$store.token)
-      params.append('articleId', this.$store.selectedArticleId)
-      await this.$axios.post(url, params).then(res => {
-        this.jsonData = JSON.parse(res.data.json)
-        this.title = res.data.title
-        this.url = res.data.url
-      }).catch(e => {
-        console.log(e)
-        alert("データの取得に失敗しました")
-      })
+      if(this.$store.checkTokenIsSet()) {
+        const url = "fetch-article-data"
+        const params = new URLSearchParams()
+        params.append('token', this.$store.token)
+        params.append('articleId', this.$store.selectedArticleId)
+        await this.$axios.post(url, params).then(res => {
+          this.jsonData = JSON.parse(res.data.json)
+          this.title = res.data.title
+          this.url = res.data.url
+        }).catch(e => {
+          console.log(e)
+          alert("データの取得に失敗しました")
+        })
+      } else {
+        this.$router.push({ path: '/login' })
+      }
     }
   }
 }
