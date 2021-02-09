@@ -11,5 +11,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
+.article-edit-wrapper {
+  width: 100%;
+  background: #ffffff;
+  padding: 30px 60px;
+  height: 100%;
+}
 </style>
