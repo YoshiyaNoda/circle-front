@@ -6,6 +6,7 @@ import Login from "../views/Login.vue";
 import SelectArticle from "../views/SelectArticle.vue";
 import AuthFinished from "../views/AuthFinished.vue";
 import AuthFailed from "../views/AuthFailed.vue";
+import ArticleEdit from "../views/ArticleEdit.vue";
 
 Vue.use(VueRouter);
 
@@ -24,12 +25,17 @@ const routes = [
     name: "Login",
     component: Login,
   },
+  // ------------auth/*は認証されていなければ、認証画面に遷移するようにする。-------------
+  {
+    path: "/auth/edit-article",
+    name: "ArticleEdit",
+    component: ArticleEdit,
+  },
   {
     path: "/auth/failed",
     name: "AuthFailed",
     component: AuthFailed,
   },
-  // ------------auth/*は認証されていなければ、認証画面に遷移するようにする。-------------
   {
     path: "/auth/finished",
     name: "AuthFinished",

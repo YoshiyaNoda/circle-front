@@ -27,6 +27,7 @@ export default {
   methods: {
     selectArticle(articleId) {
       this.$store.selectedArticleId = articleId
+      this.$router.push({ path: '/auth/edit-article' })
     },
     async fetchArticleList() {
       if(this.$store.checkTokenIsSet()) {
