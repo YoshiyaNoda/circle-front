@@ -3,7 +3,7 @@
     <p>記事を選択、あるいは作成してください。</p>
     <div class="articlelist-container">
       <ul>
-        <li v-for="article in articleList" :key="article.id">{{ article.title }}</li>
+        <li v-for="article in articleList" :key="article.id" @click="selectArticle(article.id)">{{ article.title }}</li>
       </ul>
     </div>
     <ArticleCreate />
@@ -25,6 +25,9 @@ export default {
     this.fetchArticleList();
   },
   methods: {
+    selectArticle(articleId) {
+      this.$store.selectedArticleId = articleId
+    },
     async fetchArticleList() {
       if(this.$store.checkTokenIsSet()) {
         // tokenがあるかどうかを確認する処理をする。

@@ -15,6 +15,7 @@ const store = {
   token: '',
   email: '',
   name: '',
+  selectedArticleId: 0,
   setUserData(queries) {
     this.updateUserData(this, queries);
     this.updateObservable(queries);
