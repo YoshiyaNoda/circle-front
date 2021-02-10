@@ -33,6 +33,9 @@
           <button class="btn btn-primary" @mouseover="displayTypeSelect(d.order+1)">追加</button>
         </div>
       </div>
+      <div class="save-btn-container">
+        <button @click="saveArticleData">保存</button>
+      </div>
     </div>
     <div class="previewArea" v-show="selectedTab === 2">
 			<Preview :article-data="articleData"/>
@@ -68,6 +71,7 @@ export default {
         const params = new URLSearchParams()
         params.append('articleData', JSON.stringify(this.articleData))
         params.append('articleId', this.$store.selectedArticleId)
+        params.append('token', this.$store.token)
         await this.$axios.post(url, params).then(res => {
           console.log(res)
           alert('更新しました。')
@@ -110,7 +114,7 @@ export default {
         params.append('token', this.$store.token)
         params.append('articleId', this.$store.selectedArticleId)
         await this.$axios.post(url, params).then(res => {
-          this.jsonData = JSON.parse(res.data.json)
+          this.articleData = res.data.json
           this.title = res.data.title
           this.url = res.data.url
         }).catch(e => {
