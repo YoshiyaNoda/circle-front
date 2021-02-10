@@ -12,7 +12,7 @@
 <script>
 import HeadingEditor from '@/components/editors/HeadingEditor.vue';
 import ParagraphEditor from '@/components/editors/ParagraphEditor.vue';
-import ArticleComponent from '@/components/ArticleComponent.js';
+import { ArticleComponent } from '@/components/editors/ArticleComponent.js';
 import _ from 'lodash';
 
 export default {

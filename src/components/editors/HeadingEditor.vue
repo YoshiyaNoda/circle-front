@@ -1,0 +1,40 @@
+<template>
+  <div class="container">
+    <!-- これを変更すると親が持つデータも変更される -->
+    <!-- <p>order: {{d.order}}</p> -->
+    <textarea type="text" v-model="d.data.content"></textarea>
+  </div>
+</template>
+
+<script>
+import { ArticleComponent } from './ArticleComponent.js';
+import _ from 'lodash';
+export default {
+  mounted: function() {
+    this.$parent.$parent.$forceUpdate();
+  },
+  props: {
+    articleData: _.cloneDeep(ArticleComponent.heading.normal)
+  },
+  data: function() {
+    return {
+      d: this.articleData
+    };
+  },
+  watch: {
+    articleData: function(data) {
+      this.d = data;
+    }
+  },
+  // watch: {
+  //   articleData: function(articleData) {
+  //     // もし変更があったらdを更新(いるか??)
+  //     this.d = articleData;
+  //   }
+  // }
+}
+</script>
+
+<style lang="scss" scoped>
+
+</style>
