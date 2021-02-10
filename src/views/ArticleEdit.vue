@@ -62,13 +62,29 @@ export default {
     this.fetchArticleData()
   },
   methods: {
-    selectTab: function(num) {
+    async saveArticleData() {
+      if(this.$store.checkTokenIsSet()) {
+        const url = "save-article-data"
+        const params = new URLSearchParams()
+        params.append('articleData', JSON.stringify(this.articleData))
+        params.append('articleId', this.$store.selectedArticleId)
+        await this.$axios.post(url, params).then(res => {
+          this.articleData = res.data
+        }).catch(e => {
+          alert('データの更新に失敗しました。')
+          console.log(e)
+        })
+      } else {
+        this.$router.push({ path: '/login' })
+      }
+    },
+    selectTab(num) {
 			this.selectedTab = num;
 		},
-		displayTypeSelect: function(idx) {
+		displayTypeSelect(idx) {
 			this.displayedTypeSelect = idx
 		},
-		addElement: function(order, type) {
+		addElement(order, type) {
 			// orderによって、他の要素のorderを増加させる必要がある。
 			this.articleData = this.articleData.map(d => {
 				if(d.order >= order) {
