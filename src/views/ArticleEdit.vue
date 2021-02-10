@@ -84,7 +84,7 @@ export default {
       }
     },
     selectTab(num) {
-			this.selectedTab = num;
+			this.selectedTab = num
 		},
 		displayTypeSelect(idx) {
 			this.displayedTypeSelect = idx
@@ -94,10 +94,10 @@ export default {
 			this.articleData = this.articleData.map(d => {
 				if(d.order >= order) {
 					d.order += 1
-					return d;
+					return d
 				}
 				else return d
-			});
+			})
       // 適切な場所にデータを挿入する
 			this.articleData.splice(order, 0, {
 				order: order,
