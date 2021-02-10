@@ -32,11 +32,6 @@ export default {
       this.d = data;
     }
   },
-  methods: {
-    // updateData: function() {
-    //   this.$parent.articleData[this.articleData.order] = this.articleData;
-    // }
-  }
 }
 </script>
 
