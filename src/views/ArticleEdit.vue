@@ -14,12 +14,12 @@
 			</div>
       <div class="iterContainer" @mouseleave="displayTypeSelect(-1)" v-for="(d, idx) in articleData" :key="'container'+d.order">
 				<div class="dataEditorContainer">
-					<editor-component :article-data="d" />
+					<EditorController :article-data="d" />
 				</div>
-				<div class="typeSelectContainer" v-show="displayedTypeSelect === idx+1" >
+				<div class="typeSelectContainer" v-show="displayedTypeSelect === d.order+1" >
 					<div class="typeSelect">
 						<div class="typeSelectBtnContainer">
-							<button @click="addElement(idx+1, 'heading')">普通の見出し</button>
+							<button @click="addElement(d.order+1, 'heading')">普通の見出し</button>
 						</div>
 					</div>
 				</div>
@@ -30,9 +30,13 @@
 </template>
 
 <script>
-import { ArticleComponent } from '@/components/ArticleComponent.js'
+import { ArticleComponent } from '@/components/editors/ArticleComponent.js'
+import EditorController from '@/components/editors/EditorController.vue'
 import _ from 'lodash'
 export default {
+  components: {
+    EditorController
+  },
   data() {
     return {
       articleData: [],
