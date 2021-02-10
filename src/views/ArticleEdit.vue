@@ -69,7 +69,8 @@ export default {
         params.append('articleData', JSON.stringify(this.articleData))
         params.append('articleId', this.$store.selectedArticleId)
         await this.$axios.post(url, params).then(res => {
-          this.articleData = res.data
+          console.log(res)
+          alert('更新しました。')
         }).catch(e => {
           alert('データの更新に失敗しました。')
           console.log(e)
