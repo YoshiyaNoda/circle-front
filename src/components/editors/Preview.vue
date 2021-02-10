@@ -13,7 +13,7 @@ export default {
     };
   },
   props: {
-    articleData: {} //なぜObjectなのか...Arrayだと思うのだが...
+    articleData: new Object()
   },
   watch: {
     articleData: function(data) {

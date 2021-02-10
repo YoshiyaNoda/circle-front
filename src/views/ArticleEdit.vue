@@ -114,7 +114,9 @@ export default {
         params.append('token', this.$store.token)
         params.append('articleId', this.$store.selectedArticleId)
         await this.$axios.post(url, params).then(res => {
-          this.articleData = res.data.json
+          if(res.data.json) {
+            this.articleData = res.data.json
+          }
           this.title = res.data.title
           this.url = res.data.url
         }).catch(e => {
