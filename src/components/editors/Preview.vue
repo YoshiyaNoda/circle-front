@@ -1,8 +1,6 @@
 <template>
   <div class="container">
-    <div v-for="obj in d" :key="obj.order">
-      <div v-html="data2html(obj)"></div>
-    </div>
+    <div v-html="data2html()"></div>
   </div>
 </template>
 
@@ -23,12 +21,18 @@ export default {
     }
   },
   methods: {
-    data2html: function(obj) {
-      if(obj.type === 'heading') {
-        if(obj.option === 'normal') {
-          return '<h1>' + obj.data.content + '</h1>'
+    data2html: function() {
+      let html = ""
+      const length = this.d.length
+      for(let i = 0; i < length; i++) {
+        const obj = this.d[i]
+        if(obj.type === 'heading') {
+          if(obj.option === 'normal') {
+            html += '<h1>' + obj.data.content + '</h1>\n'
+          }
         }
       }
+      return html
     }
   }
 }
