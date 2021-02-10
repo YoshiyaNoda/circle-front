@@ -7,14 +7,11 @@
 </template>
 
 <script>
-import { ArticleComponent } from './ArticleComponent.js';
-import _ from 'lodash';
 export default {
   mounted: function() {
-    this.$parent.$parent.$forceUpdate();
   },
   props: {
-    articleData: _.cloneDeep(ArticleComponent.heading.normal)
+    articleData: new Object()
   },
   data: function() {
     return {

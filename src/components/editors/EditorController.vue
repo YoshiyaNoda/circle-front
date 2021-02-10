@@ -12,8 +12,6 @@
 <script>
 import HeadingEditor from '@/components/editors/HeadingEditor.vue';
 import ParagraphEditor from '@/components/editors/ParagraphEditor.vue';
-import { ArticleComponent } from '@/components/editors/ArticleComponent.js';
-import _ from 'lodash';
 
 export default {
   components: {
@@ -26,7 +24,7 @@ export default {
     };
   },
   props: {
-    articleData: _.cloneDeep(ArticleComponent.heading.normal)
+    articleData: new Object()
   },
   watch: {
     // こうやってpropsは監視して、dataを子コンポーネントに渡さないと、おかしなことが起こる

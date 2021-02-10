@@ -1,41 +1,53 @@
 <template>
   <div class="article-edit-wrapper">
-    <h1>記事の編集</h1>
-    <div class="main-editor-container">
-      <div class="iterContainer" @mouseleave="displayTypeSelect(-1)">
-				<div class="typeSelectContainer" v-show="displayedTypeSelect === 0" >
-					<div class="typeSelect">
-						<div class="typeSelectBtnContainer">
-							<button @click="addElement(0, 'heading')">普通の見出し</button>
-						</div>
-					</div>
-				</div>
-				<button class="btn btn-primary" @mouseover="displayTypeSelect(0)">追加</button>
+    <div class="tabArea">
+			<div class="tabBtnContainer">
+				<button class="btn" @click="selectTab(1)">編集画面</button>
+				<button class="btn" @click="selectTab(2)">Preview</button>
 			</div>
-      <div class="iterContainer" @mouseleave="displayTypeSelect(-1)" v-for="(d, idx) in articleData" :key="'container'+d.order">
-				<div class="dataEditorContainer">
-					<EditorController :article-data="d" />
-				</div>
-				<div class="typeSelectContainer" v-show="displayedTypeSelect === d.order+1" >
-					<div class="typeSelect">
-						<div class="typeSelectBtnContainer">
-							<button @click="addElement(d.order+1, 'heading')">普通の見出し</button>
-						</div>
-					</div>
-				</div>
-				<button class="btn btn-primary" @mouseover="displayTypeSelect(idx+1)">追加</button>
-			</div>
+		</div>
+    <div class="editorArea" v-show="selectedTab === 1">
+      <h1>記事の編集</h1>
+      <div class="main-editor-container">
+        <div class="iterContainer" @mouseleave="displayTypeSelect(-1)">
+          <div class="typeSelectContainer" v-show="displayedTypeSelect === 0" >
+            <div class="typeSelect">
+              <div class="typeSelectBtnContainer">
+                <button @click="addElement(0, 'heading')">普通の見出し</button>
+              </div>
+            </div>
+          </div>
+          <button class="btn btn-primary" @mouseover="displayTypeSelect(0)">追加</button>
+        </div>
+        <div class="iterContainer" @mouseleave="displayTypeSelect(-1)" v-for="d in articleData" :key="'container'+d.order">
+          <div class="dataEditorContainer">
+            <EditorController :article-data="d" />
+          </div>
+          <div class="typeSelectContainer" v-show="displayedTypeSelect === d.order+1" >
+            <div class="typeSelect">
+              <div class="typeSelectBtnContainer">
+                <button @click="addElement(d.order+1, 'heading')">普通の見出し</button>
+              </div>
+            </div>
+          </div>
+          <button class="btn btn-primary" @mouseover="displayTypeSelect(d.order+1)">追加</button>
+        </div>
+      </div>
     </div>
+    <div class="previewArea" v-show="selectedTab === 2">
+			<Preview :article-data="articleData"/>
+		</div>
   </div>
 </template>
 
 <script>
 import { ArticleComponent } from '@/components/editors/ArticleComponent.js'
 import EditorController from '@/components/editors/EditorController.vue'
+import Preview from '@/components/editors/Preview.vue'
 import _ from 'lodash'
 export default {
   components: {
-    EditorController
+    EditorController, Preview
   },
   data() {
     return {
@@ -43,12 +55,16 @@ export default {
       title: '',
       url: '',
       displayedTypeSelect: -1,
+      selectedTab: 1
     }
   },
   mounted() {
     this.fetchArticleData()
   },
   methods: {
+    selectTab: function(num) {
+			this.selectedTab = num;
+		},
 		displayTypeSelect: function(idx) {
 			this.displayedTypeSelect = idx
 		},
@@ -61,14 +77,14 @@ export default {
 				}
 				else return d
 			});
-			// 適切な場所にデータを挿入する
+      // 適切な場所にデータを挿入する
 			this.articleData.splice(order, 0, {
 				order: order,
 				type: type,
 				option: 'normal',
 				// dataはdeepcopyで初期値を設定
 				data: _.cloneDeep(ArticleComponent[type].normal.data)
-			})
+      })
 		},
     async fetchArticleData() {
       if(this.$store.checkTokenIsSet()) {
