@@ -89,6 +89,8 @@ export default {
         const params = new URLSearchParams()
         params.append('articleData', JSON.stringify(this.articleData))
         params.append('articleId', this.$store.selectedArticleId)
+        params.append('title', this.title)
+        params.append('url', this.url)
         params.append('token', this.$store.token)
         await this.$axios.post(url, params).then(res => {
           console.log(res)
