@@ -1,6 +1,9 @@
 <template>
   <div class="container">
     <div v-html="data2html()"></div>
+    <div class="btnContainer">
+      <button @click="saveRawHTML">公開データを更新</button>
+    </div>
   </div>
 </template>
 
@@ -21,6 +24,24 @@ export default {
     }
   },
   methods: {
+    async saveRawHTML() {
+      if(this.$store.checkTokenIsSet) {
+        const url = "save-raw-HTMl"
+        const params = new URLSearchParams()
+        params.append('rawHTML', this.data2html())
+        params.append('token', this.$store.token)
+        params.append('articleId', this.$store.selectedArticleId)
+        await this.$axios.post(url, params).then(res => {
+          console.log(res)
+          alert('更新しました。')
+        }).catch(e => {
+          console.log(e)
+          alert('更新に失敗しました。')
+        })
+      } else {
+        this.$router.push({ path: '/login' })
+      }
+    },
     data2html: function() {
       let html = ""
       const length = this.d.length
