@@ -157,7 +157,8 @@ export default {
 	display: flex;
 }
 .article-edit-wrapper {
-  width: 85%;
+  width: 100%;
+  box-sizing: border-box;
   background: #ffffff;
   padding: 30px 60px;
   height: 100%;
