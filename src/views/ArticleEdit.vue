@@ -142,7 +142,7 @@ export default {
 	display: flex;
 }
 .article-edit-wrapper {
-  width: 100%;
+  width: 85%;
   background: #ffffff;
   padding: 30px 60px;
   height: 100%;

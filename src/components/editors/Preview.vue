@@ -31,6 +31,11 @@ export default {
             html += '<h1>' + obj.data.content + '</h1>\n'
           }
         }
+        else if(obj.type === 'paragraph') {
+          if(obj.option === 'normal') {
+            html += '<p>' + obj.data.content + '</p>\n'
+          }
+        }
       }
       return html
     }
@@ -38,6 +43,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped lang="scss">
+.container {
+  width: 100%;
+}
 </style>
