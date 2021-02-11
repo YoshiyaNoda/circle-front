@@ -29,5 +29,6 @@ export const ArticleComponent = {
         'content': '本文'
       }
     }
+    
   }
 }
