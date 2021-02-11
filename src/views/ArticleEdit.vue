@@ -3,6 +3,8 @@
     <div class="tabArea">
 			<div class="tabBtnContainer">
 				<button class="btn" @click="selectTab(1)">編集画面</button>
+			</div>
+			<div class="tabBtnContainer">
 				<button class="btn" @click="selectTab(2)">Preview</button>
 			</div>
 		</div>
@@ -153,14 +155,42 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.tabBtnContainer {
+.tabArea {
+  width: 100%;
+  height: 40px;
+  background-color: #f3f3f3;
+  border-bottom: solid 1px rgba(0,0,0,.1);
 	display: flex;
+  > .tabBtnContainer {
+    > button {
+      -webkit-tap-highlight-color: transparent;
+      padding: 0px;
+      cursor: pointer;
+      -webkit-border-radius: 0;
+      border-radius: 0;
+      margin: 0px 24px;
+      font-size: 17px;
+      line-height: 17px;
+      user-select: none;
+      height: 100%;
+      padding-left: 4px;
+      padding-right: 4px;
+      position: relative;
+      background-color: rgba(0,0,0,0.002);
+      border: 1px solid transparent;
+      outline: 1px solid rgba(0,0,0,0.002);
+      box-sizing: border-box;
+      font-family: "Segoe UI Regular","Segoe UI",Helvetica,Tahoma,Geneva,Verdana,sans-serif;
+      -webkit-font-smoothing: antialiased;
+      color: #212121;
+      overflow: visible;
+    }
+  }
 }
 .article-edit-wrapper {
   width: 100%;
   box-sizing: border-box;
   background: #ffffff;
-  padding: 30px 60px;
   height: 100%;
 }
 </style>
