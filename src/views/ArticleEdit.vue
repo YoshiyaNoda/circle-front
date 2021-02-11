@@ -8,6 +8,17 @@
 		</div>
     <div class="editorArea" v-show="selectedTab === 1">
       <h1>記事の編集</h1>
+      <div class="title-and-url-edit-area">
+        <div class="url-title-form-container">
+          <label>title</label>
+          <input type="text" v-model="title">
+        </div>
+        <div class="url-title-form-container">
+          <label>URL</label>
+          <input type="text" v-model="url">
+        </div>
+        <p>この記事は、 https://circle-website-creation.com/website/{{ user_id }}/{{ url }} から閲覧できます。</p>
+      </div>
       <div class="main-editor-container">
         <div class="iterContainer" @mouseleave="displayTypeSelect(-1)">
           <div class="typeSelectContainer" v-show="displayedTypeSelect === 0" >
@@ -63,8 +74,9 @@ export default {
       articleData: [],
       title: '',
       url: '',
+      user_id: 0,
       displayedTypeSelect: -1,
-      selectedTab: 1
+      selectedTab: 1,
     }
   },
   mounted() {
@@ -125,6 +137,7 @@ export default {
           }
           this.title = res.data.title
           this.url = res.data.url
+          this.user_id = res.data.user_id
         }).catch(e => {
           console.log(e)
           alert("データの取得に失敗しました")
