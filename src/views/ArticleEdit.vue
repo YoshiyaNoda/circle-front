@@ -13,7 +13,10 @@
           <div class="typeSelectContainer" v-show="displayedTypeSelect === 0" >
             <div class="typeSelect">
               <div class="typeSelectBtnContainer">
-                <button @click="addElement(0, 'heading')">普通の見出し</button>
+                <button @click="addElement(0, 'heading')">Heading</button>
+              </div>
+              <div class="typeSelectBtnContainer">
+                <button @click="addElement(0, 'paragraph')">Pragraph</button>
               </div>
             </div>
           </div>
@@ -26,7 +29,10 @@
           <div class="typeSelectContainer" v-show="displayedTypeSelect === d.order+1" >
             <div class="typeSelect">
               <div class="typeSelectBtnContainer">
-                <button @click="addElement(d.order+1, 'heading')">普通の見出し</button>
+                <button @click="addElement(d.order+1, 'heading')">Heading</button>
+              </div>
+              <div class="typeSelectBtnContainer">
+                <button @click="addElement(d.order+1, 'paragraph')">Pragraph</button>
               </div>
             </div>
           </div>
