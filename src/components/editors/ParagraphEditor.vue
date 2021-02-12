@@ -6,7 +6,7 @@
       </div>
       <div contenteditable="true" @input="sync" ref="wysiwygEditor" role="textbox" aria-multiline="true"></div>
     </div>
-    <textarea type="text" v-model="d.data.content"></textarea>
+    <!-- <textarea type="text" v-model="d.data.content"></textarea> -->
   </div>
 </template>
 
