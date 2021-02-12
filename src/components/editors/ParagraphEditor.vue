@@ -1,13 +1,11 @@
 <template>
-  <div class="container">
-    <div class="paragraphEditor">
+    <div class="paragraphEditorContainer">
       <div class="customBtnContainer">
-        <button @click="makeStrong">太字</button>
+        <button @click="makeStrong">強調</button>
       </div>
-      <div contenteditable="true" @input="sync" ref="wysiwygEditor" role="textbox" aria-multiline="true"></div>
+      <div contenteditable="true" @input="sync" ref="wysiwygEditor" role="textbox" aria-multiline="true" class="paragraphEditor"></div>
     </div>
     <!-- <textarea type="text" v-model="d.data.content"></textarea> -->
-  </div>
 </template>
 
 <script>
@@ -66,8 +64,39 @@ export default {
 </script>
 
 <style lang="scss"> // scopedにするとv-dataが追加されてしまう。
-textarea {
+.paragraphEditorContainer {
+  border-radius: 0px;
+  border: solid 1px rgba(0,0,0,.1);
   width: 80%;
-  height: 200px;
+  margin: 0 auto;
+  &:hover {
+    border: solid 1px rgba(0,0,0,.3);
+  }
+  > .customBtnContainer {
+    width: 100%;
+    height: 40px;
+    border-bottom: solid 1px rgba(0,0,0,.1);
+    > button {
+      height: 100%;
+      min-width: 50px;
+      padding: 3px 8px;
+      background-color: transparent;
+      border: solid 1px transparent;
+      margin: 0 5px;
+      &:hover {
+        background-color: rgba(0,0,0,.1);
+      }
+    }
+  }
+  > .paragraphEditor {
+    width: 100%;
+    height: 200px;
+    overflow-y: scroll;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: none;
+    padding: 10px;
+  }
 }
 </style>
