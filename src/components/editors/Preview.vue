@@ -54,7 +54,8 @@ export default {
         }
         else if(obj.type === 'paragraph') {
           if(obj.option === 'normal') {
-            html += '<p>' + obj.data.content + '</p>\n'
+            // html += '<p>' + obj.data.content + '</p>\n'
+            html += obj.data.content
           }
         }
       }
