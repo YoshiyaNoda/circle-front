@@ -2,17 +2,17 @@
   <div class="article-edit-wrapper">
     <div class="tabArea">
 			<div class="tabBtnContainer">
-				<button class="btn" @click="selectTab(1)">編集画面</button>
+				<button :class="{'btn': true, 'active-tab': selectedTab === 1}" @click="selectTab(1)">編集画面</button>
 			</div>
 			<div class="tabBtnContainer">
-				<button class="btn" @click="selectTab(2)">Preview</button>
+				<button :class="{'btn': true, 'active-tab': selectedTab === 2}"  @click="selectTab(2)">Preview</button>
 			</div>
 		</div>
     <div class="editorArea" v-show="selectedTab === 1">
       <h1>記事の編集</h1>
       <div class="title-and-url-edit-area">
         <div class="url-title-form-container">
-          <label>title</label>
+          <label>記事のタイトル</label>
           <input type="text" v-model="title">
         </div>
         <div class="url-title-form-container">
@@ -155,39 +155,46 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.tabArea {
-  width: 100%;
-  height: 40px;
-  background-color: #f3f3f3;
-  border-bottom: solid 1px rgba(0,0,0,.1);
-	display: flex;
-  > .tabBtnContainer {
-    > button {
-      -webkit-tap-highlight-color: transparent;
-      padding: 0px;
-      cursor: pointer;
-      -webkit-border-radius: 0;
-      border-radius: 0;
-      margin: 0px 24px;
-      font-size: 17px;
-      line-height: 17px;
-      user-select: none;
-      height: 100%;
-      padding-left: 4px;
-      padding-right: 4px;
-      position: relative;
-      background-color: rgba(0,0,0,0.002);
-      border: 1px solid transparent;
-      outline: 1px solid rgba(0,0,0,0.002);
-      box-sizing: border-box;
-      font-family: "Segoe UI Regular","Segoe UI",Helvetica,Tahoma,Geneva,Verdana,sans-serif;
-      -webkit-font-smoothing: antialiased;
-      color: #212121;
-      overflow: visible;
+.article-edit-wrapper {
+  > .editorArea {
+    padding: 30px;
+  }
+  > .tabArea {
+    width: 100%;
+    height: 40px;
+    background-color: #f3f3f3;
+    border-bottom: solid 1px rgba(0,0,0,.1);
+    display: flex;
+    > .tabBtnContainer {
+      > .btn {
+        -webkit-tap-highlight-color: transparent;
+        padding: 0px;
+        cursor: pointer;
+        -webkit-border-radius: 0;
+        border-radius: 0;
+        margin: 0px 24px;
+        font-size: 17px;
+        line-height: 17px;
+        user-select: none;
+        height: 100%;
+        padding-left: 4px;
+        padding-right: 4px;
+        position: relative;
+        background-color: rgba(0,0,0,0.002);
+        border: 1px solid transparent;
+        border-bottom: 2px solid transparent;
+        outline: 1px solid rgba(0,0,0,0.002);
+        box-sizing: border-box;
+        font-family: "Segoe UI Regular","Segoe UI",Helvetica,Tahoma,Geneva,Verdana,sans-serif;
+        -webkit-font-smoothing: antialiased;
+        color: #212121;
+        overflow: visible;
+      }
+      > .active-tab {
+        border-bottom: 2px solid #008272;
+      }
     }
   }
-}
-.article-edit-wrapper {
   width: 100%;
   box-sizing: border-box;
   background: #ffffff;
