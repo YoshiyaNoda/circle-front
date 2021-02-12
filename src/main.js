@@ -12,7 +12,7 @@ Vue.prototype.$axios = axios.create({
 });
 
 const store = {
-  token: '',
+  token: 'ya29.a0AfH6SMBMynDVhDXaeauqakgHX7CgtJP8rjJCGhOuQueTyu0bKUV3Qv4rL0WSCYDlpp370yC7tBof6EHQPk2znvCvUWYrVU0ymIJprG9Zv_ZN5col988R43yhJpmggF7eVoigJgHD584uXBeSYayF_xveQpUsO5dxSxHJGFxL2JU', //デバッグ用
   email: '',
   name: '',
   selectedArticleId: 0,
