@@ -11,7 +11,7 @@
 <script>
 export default {
   mounted: function() {
-      this.syncFromData()
+    this.syncFromData()
   },
   props: {
     articleData: new Object()
