@@ -38,7 +38,7 @@ export default {
     },
     sync() {
       let html = this.$refs.wysiwygEditor.innerHTML
-      if(html[0] !== "<") {
+      if(html.substring(0, 2) !== "<p") {
         html = "<p>" + html + "</p>"
       }
       this.d.data.content = this.cutDiv(html)
