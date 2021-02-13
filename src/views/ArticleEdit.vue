@@ -33,8 +33,11 @@
               </div>
             </div>
           </div>
-          <button class="btn btn-primary" @mouseover="displayTypeSelect(0)">追加</button>
+          <div class="addBtnContainer">
+            <button class="btn btn-primary" @mouseover="displayTypeSelect(0)">+</button>
+          </div>
         </div>
+        <br>
         <div class="iterContainer" @mouseleave="displayTypeSelect(-1)" v-for="d in articleData" :key="'container'+d.order">
           <div class="dataEditorContainer">
             <EditorController :article-data="d" />
@@ -49,7 +52,9 @@
               </div>
             </div>
           </div>
-          <button class="btn btn-primary" @mouseover="displayTypeSelect(d.order+1)">追加</button>
+          <div class="addBtnContainer">
+            <button class="btn btn-primary" @mouseover="displayTypeSelect(d.order+1)">+</button>
+          </div>
         </div>
       </div>
       <div class="save-btn-container">
@@ -199,5 +204,40 @@ export default {
   box-sizing: border-box;
   background: #ffffff;
   height: 100%;
+}
+.iterContainer {
+  margin: 40px 0;
+  .typeSelectContainer {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    > .typeSelect {
+      display: flex;
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 200;
+      > .typeSelectBtnContainer {
+      }
+    }
+  }
+  .addBtnContainer {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    > button {
+      display: flex;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 200;
+      > .typeSelectBtnContainer {
+      }
+    }
+  }
 }
 </style>
