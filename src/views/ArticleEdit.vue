@@ -370,4 +370,27 @@ export default {
     margin-right: 10px;
   }
 }
+.save-btn-container {
+  position: relative;
+  width: 100%;
+  height: 100px;
+  > button {
+    position: absolute;
+    right: 100px;
+    top: 0;
+    font: inherit;
+    color: white;
+    background-color: rgb(255, 111, 1);
+    border: solid 1px rgba(0,0,0,.1);
+    border-radius: 3px;
+    padding: 10px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: none;
+    &:hover {
+      background-color: rgb(225, 103, 37);
+    }
+  }
+}
 </style>
