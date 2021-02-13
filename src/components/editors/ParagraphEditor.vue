@@ -43,7 +43,7 @@ export default {
         this.d.data.content = this.cutNeedless(html)
         this.syncFromData()
       }
-        this.d.data.content = this.cutNeedless(html)
+      this.d.data.content = this.cutNeedless(html)
       // this.d.data.content = this.cutNeedless(event.target.innerHTML)
     },
     syncFromData() {
@@ -65,7 +65,7 @@ export default {
 }
 </script>
 
-<style lang="scss"> // scopedにするとv-dataが追加されてしまう。
+<style lang="scss" scoped> // scopedにするとv-dataが追加されてしまう。
 .paragraphEditorContainer {
   border-radius: 0px;
   border: solid 1px rgba(0,0,0,.1);

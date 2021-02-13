@@ -3,7 +3,7 @@
       <div class="customBtnContainer">
         <button @click="makeStrong">色とか?</button>
       </div>
-      <div contenteditable="true" @input="sync" ref="wysiwygEditor" role="textbox" aria-multiline="true" class="headingEditor"></div>
+      <div contenteditable="true" @input="sync" ref="wysiwygEditor" role="textbox" class="headingEditor" v-on:keydown.enter.exact.prevent></div>
     </div>
     <!-- <textarea type="text" v-model="d.data.content"></textarea> -->
 </template>
@@ -43,7 +43,7 @@ export default {
         this.d.data.content = this.cutNeedless(html)
         this.syncFromData()
       }
-        this.d.data.content = this.cutNeedless(html)
+      this.d.data.content = this.cutNeedless(html)
       // this.d.data.content = this.cutNeedless(event.target.innerHTML)
     },
     syncFromData() {
@@ -54,7 +54,7 @@ export default {
       const text1 = text.replaceAll("<div>", "")
       const text2 = text1.replaceAll("</div>", "")
       const text3 = text2.replaceAll("<h1></h1>", "")
-      return text3.replaceAll("<br>", "</h1><h1>")
+      return text3.replaceAll("<br>", "")
     }
   },
   watch: {

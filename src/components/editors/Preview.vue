@@ -49,7 +49,8 @@ export default {
         const obj = this.d[i]
         if(obj.type === 'heading') {
           if(obj.option === 'normal') {
-            html += '<h1>' + obj.data.content + '</h1>\n'
+            // html += '<h1>' + obj.data.content + '</h1>\n'
+            html += obj.data.content
           }
         }
         else if(obj.type === 'paragraph') {
