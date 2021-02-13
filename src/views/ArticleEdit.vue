@@ -34,7 +34,10 @@
             </div>
           </div>
           <div class="addBtnContainer">
-            <button class="btn btn-primary" @mouseover="displayTypeSelect(0)">+</button>
+            <button class="icon-btn add-btn" @mouseover="displayTypeSelect(0)">
+              <div class="add-icon"></div>
+              <div class="btn-txt">Add</div>
+            </button>
           </div>
         </div>
         <br>
@@ -53,7 +56,10 @@
             </div>
           </div>
           <div class="addBtnContainer">
-            <button class="btn btn-primary" @mouseover="displayTypeSelect(d.order+1)">+</button>
+            <button class="icon-btn add-btn" @mouseover="displayTypeSelect(d.order+1)">
+              <div class="add-icon"></div>
+              <div class="btn-txt">追加</div>
+            </button>
           </div>
         </div>
       </div>
@@ -229,16 +235,98 @@ export default {
     top: 0;
     left: 0;
     width: 100%;
-    > button {
-      display: flex;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 200;
-      > .typeSelectBtnContainer {
-      }
-    }
   }
 }
+
+// コピペ
+.add-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  width: 30px;
+  height: 30px;
+  border: 1px solid #cdcdcd;
+  background-color: black;
+  border-radius: 15px !important;
+  overflow: hidden;
+  transition: width 0.2s ease-in-out;
+}
+.add-btn:hover {
+  // width: 120px;
+  width: 70px;
+}
+.add-btn::before,
+.add-btn::after {
+  transition: width 0.2s ease-in-out, border-radius 0.2s ease-in-out;
+  content: "";
+  position: absolute;
+  height: 4px;
+  width: 10px;
+  top: calc(50% - 2px);
+  background-color: white;
+}
+.add-btn::after {
+  right: 6px;
+  overflow: hidden;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+.add-btn::before {
+  left: 6px;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+}
+.icon-btn:focus {
+  outline: none;
+}
+.btn-txt {
+  opacity: 0;
+  transition: opacity 0.2s;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  color: white;
+}
+.add-btn:hover::before,
+.add-btn:hover::after {
+  width: 4px;
+  border-radius: 2px;
+}
+.add-btn:hover .btn-txt {
+  opacity: 1;
+}
+.add-icon::after,
+.add-icon::before {
+  transition: all 0.2s ease-in-out;
+  content: "";
+  position: absolute;
+  height: 16px;
+  width: 2px;
+  top: calc(50% - 8px);
+  background: white;
+  overflow: hidden;
+}
+.add-icon::before {
+  left: 12px;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+}
+.add-icon::after {
+  right: 12px;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+.add-btn:hover .add-icon::before {
+  left: 15px;
+  height: 4px;
+  top: calc(50% - 2px);
+}
+.add-btn:hover .add-icon::after {
+  right: 15px;
+  height: 4px;
+  top: calc(50% - 2px);
+}
+// ---
 </style>
