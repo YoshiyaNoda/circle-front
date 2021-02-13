@@ -60,6 +60,7 @@ export default {
   watch: {
     articleData: function(data) {
       this.d = data
+      this.syncFromData()
     }
   },
 }

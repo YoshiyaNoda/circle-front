@@ -133,6 +133,7 @@ export default {
 				// dataはdeepcopyで初期値を設定
 				data: _.cloneDeep(ArticleComponent[type].normal.data)
       })
+      console.log(this.articleData)
 		},
     async fetchArticleData() {
       if(this.$store.checkTokenIsSet()) {
