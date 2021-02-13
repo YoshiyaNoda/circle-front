@@ -4,7 +4,7 @@
       <HeadingEditor :article-data="d" />
     </div>
     <div v-if="articleData.type === 'paragraph'">
-      <ParagraphEditor />
+      <ParagraphEditor :article-data="d"/>
     </div>
   </div>
 </template> 
