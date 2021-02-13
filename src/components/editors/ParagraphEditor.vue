@@ -40,19 +40,21 @@ export default {
       let html = this.$refs.wysiwygEditor.innerHTML
       if(html.substring(0, 2) !== "<p") {
         html = "<p>" + html + "</p>"
+        this.d.data.content = this.cutNeedless(html)
+        this.syncFromData()
       }
-      this.d.data.content = this.cutDiv(html)
-      // this.d.data.content = this.cutDiv(event.target.innerHTML)
+        this.d.data.content = this.cutNeedless(html)
+      // this.d.data.content = this.cutNeedless(event.target.innerHTML)
     },
     syncFromData() {
       this.$refs.wysiwygEditor.innerHTML = this.d.data.content
-      console.log(this.d.data.content)
-      // this.d.data.content = this.cutDiv(event.target.innerHTML)
+      // this.d.data.content = this.cutNeedless(event.target.innerHTML)
     },
-    cutDiv(text) {
+    cutNeedless(text) {
       const text1 = text.replaceAll("<div>", "")
       const text2 = text1.replaceAll("</div>", "")
-      return text2.replaceAll("<br>", "</p><p>")
+      const text3 = text2.replaceAll("<p></p>", "")
+      return text3.replaceAll("<br>", "</p><p>")
     }
   },
   watch: {
