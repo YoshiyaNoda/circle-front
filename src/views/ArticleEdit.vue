@@ -11,15 +11,9 @@
     <div class="editorArea" v-show="selectedTab === 1">
       <h1>記事の編集</h1>
       <div class="title-and-url-edit-area">
-        <div class="url-title-form-container">
-          <label>記事のタイトル</label>
-          <input type="text" v-model="title">
-        </div>
-        <div class="url-title-form-container">
-          <label>URL</label>
-          <input type="text" v-model="url">
-        </div>
-        <p>この記事は、 https://circle-website-creation.com/website/{{ user_id }}/{{ url }} から閲覧できます。</p>
+        <p class="articlePropaty"><span>タイトル</span><input type="text" v-model="title"></p>
+        <p class="articlePropaty"><span>URL</span><input type="text" v-model="url"></p>
+        <p class="articlePropaty"><span>閲覧用URL</span>https://circle-website-creation.com/website/{{ user_id }}/{{ url }}</p>
       </div>
       <div class="main-editor-container">
         <div class="iterContainer">
@@ -360,5 +354,20 @@ export default {
   height: 100%;
   background-color: rgba(200,200,200,.6);
   z-index: 100;
+}
+.articlePropaty {
+  border-bottom: solid 1px rgba(0,0,0,.1);
+  > input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: none;
+    border: none;
+  }
+  > span {
+    font-size: 0.9rem;
+    color:rgba(0,0,0,.6);
+    margin-right: 10px;
+  }
 }
 </style>
