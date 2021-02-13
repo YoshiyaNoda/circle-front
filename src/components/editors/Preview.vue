@@ -1,7 +1,7 @@
 <template>
-  <div class="container">
+  <div class="previewContainer">
     <div v-html="data2html()"></div>
-    <div class="btnContainer">
+    <div class="previewBtnContainer">
       <button @click="saveRawHTML">公開データを更新</button>
     </div>
   </div>
@@ -49,14 +49,12 @@ export default {
         const obj = this.d[i]
         if(obj.type === 'heading') {
           if(obj.option === 'normal') {
-            // html += '<h1>' + obj.data.content + '</h1>\n'
-            html += obj.data.content
+            html += '<div class="paddingContainer">' + obj.data.content + '</div>\n'
           }
         }
         else if(obj.type === 'paragraph') {
           if(obj.option === 'normal') {
-            // html += '<p>' + obj.data.content + '</p>\n'
-            html += obj.data.content
+            html += '<div class="paddingContainer">' + obj.data.content + '</div>\n'
           }
         }
       }
@@ -66,8 +64,11 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
-.container {
+<style lang="scss"> // scopedにするとclassにスタイルが適用されない
+.previewContainer {
   width: 100%;
+}
+.paddingContainer {
+  padding: 20px 60px;
 }
 </style>
