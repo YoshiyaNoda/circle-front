@@ -22,41 +22,41 @@
         <p>この記事は、 https://circle-website-creation.com/website/{{ user_id }}/{{ url }} から閲覧できます。</p>
       </div>
       <div class="main-editor-container">
-        <div class="iterContainer" @mouseleave="displayTypeSelect(-1)">
+        <div class="iterContainer">
           <div class="typeSelectContainer" v-show="displayedTypeSelect === 0" >
             <div class="typeSelect">
               <div class="typeSelectBtnContainer">
-                <button @click="addElement(0, 'heading')">Heading</button>
+                <button @click="addElement(0, 'heading')"><span>見出し</span></button>
               </div>
               <div class="typeSelectBtnContainer">
-                <button @click="addElement(0, 'paragraph')">Pragraph</button>
+                <button @click="addElement(0, 'paragraph')"><span>テキスト</span></button>
               </div>
             </div>
           </div>
           <div class="addBtnContainer">
-            <button class="icon-btn add-btn" @mouseover="displayTypeSelect(0)">
+            <button class="icon-btn add-btn" @click.stop="displayTypeSelect(0)">
               <div class="add-icon"></div>
-              <div class="btn-txt">Add</div>
+              <div class="btn-txt">追加</div>
             </button>
           </div>
         </div>
         <br>
-        <div class="iterContainer" @mouseleave="displayTypeSelect(-1)" v-for="d in articleData" :key="'container'+d.order">
+        <div class="iterContainer" v-for="d in articleData" :key="'container'+d.order">
           <div class="dataEditorContainer">
             <EditorController :article-data="d" />
           </div>
           <div class="typeSelectContainer" v-show="displayedTypeSelect === d.order+1" >
             <div class="typeSelect">
               <div class="typeSelectBtnContainer">
-                <button @click="addElement(d.order+1, 'heading')">Heading</button>
+                <button @click="addElement(d.order+1, 'heading')"><span>見出し</span></button>
               </div>
               <div class="typeSelectBtnContainer">
-                <button @click="addElement(d.order+1, 'paragraph')">Pragraph</button>
+                <button @click="addElement(d.order+1, 'paragraph')"><span>テキスト</span></button>
               </div>
             </div>
           </div>
           <div class="addBtnContainer">
-            <button class="icon-btn add-btn" @mouseover="displayTypeSelect(d.order+1)">
+            <button class="icon-btn add-btn" @click.stop="displayTypeSelect(d.order+1)">
               <div class="add-icon"></div>
               <div class="btn-txt">追加</div>
             </button>
@@ -67,6 +67,7 @@
         <button @click="saveArticleData">保存</button>
       </div>
     </div>
+    <div id="overlay" v-show="displayedTypeSelect !== -1" @click="displayTypeSelect(-1)"></div>
     <div class="previewArea" v-show="selectedTab === 2">
 			<Preview :article-data="articleData"/>
 		</div>
@@ -120,7 +121,7 @@ export default {
 			this.selectedTab = num
 		},
 		displayTypeSelect(idx) {
-			this.displayedTypeSelect = idx
+      this.displayedTypeSelect = idx
 		},
 		addElement(order, type) {
 			// orderによって、他の要素のorderを増加させる必要がある。
@@ -140,6 +141,7 @@ export default {
 				data: _.cloneDeep(ArticleComponent[type].normal.data)
       })
       console.log(this.articleData)
+      this.displayedTypeSelect = -1
 		},
     async fetchArticleData() {
       if(this.$store.checkTokenIsSet()) {
@@ -218,15 +220,36 @@ export default {
     position: relative;
     top: 0;
     left: 0;
-    width: 100%;
     > .typeSelect {
       display: flex;
       position: absolute;
-      bottom: 0;
+      bottom: 15px;
       left: 50%;
       transform: translateX(-50%);
       z-index: 200;
+      padding: 10px;
+      border: solid 1px rgba(0,0,0,.1);
+      background-color: white;
       > .typeSelectBtnContainer {
+        > button {
+          background-color: white;
+          width: 80px;
+          height: 70px;
+          border: solid 1px transparent;
+          position: relative;
+          &:hover {
+            background-color: rgba(0,0,0,.1);
+          }
+          > span {
+            display: inline-block;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            font-size: 0.95em;
+            white-space: nowrap;
+          }
+        }
       }
     }
   }
@@ -329,4 +352,13 @@ export default {
   top: calc(50% - 2px);
 }
 // ---
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(200,200,200,.6);
+  z-index: 100;
+}
 </style>
