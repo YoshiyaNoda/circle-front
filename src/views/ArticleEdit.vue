@@ -199,7 +199,7 @@ export default {
         overflow: visible;
       }
       > .active-tab {
-        border-bottom: 2px solid #008272;
+        border-bottom: 2px solid rgb(255, 111, 1);
       }
     }
   }
