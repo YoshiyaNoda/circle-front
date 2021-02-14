@@ -110,6 +110,9 @@ export default {
     background-color: #FFFFFF;
     border-radius: 5px;
     z-index: 200;
+    > p {
+      color: red;
+    }
     > .input-container {
       padding: 15px;
       > p {
