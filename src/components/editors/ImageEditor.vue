@@ -4,7 +4,7 @@
         <button>何か</button>
       </div>
       <div class="imageEditor" @click="selectImage">
-        <img :src="d.data.url ? d.data.url: ''" alt="画像">
+        <img :src="d.data.url ? d.data.url: require('@/assets/live.jpg')" alt="画像">
       </div>
     </div>
     <!-- <textarea type="text" v-model="d.data.content"></textarea> -->
