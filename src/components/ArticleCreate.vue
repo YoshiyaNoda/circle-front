@@ -5,18 +5,17 @@
       <button @click="activate">新規作成</button>
     </div>
     <div class="article-create-modal">
-      <p>{{ msg ? msg : "新しい記事を作成" }}</p>
-      <button @click="refresh">キャンセル</button>
+      <h2>新しい記事の作成</h2>
+      <p>{{ msg ? msg : "" }}</p>
       <div class="input-container">
-        <label>タイトル</label>
-        <input type="text" v-model="title">
+        <p><span>タイトル</span><input type="text" v-model="title"></p>
       </div>
       <div class="input-container">
-        <label>URL</label>
-        <input type="text" v-model="url">
+        <p><span>URL</span><input type="text" v-model="url"></p>
       </div>
       <div class="create-btn-container">
         <button @click="create">作成</button>
+        <button @click="refresh" class="cancelBtn">キャンセル</button>
       </div>
     </div>
     <div id="overlay">
@@ -29,8 +28,8 @@ export default {
   data() {
     return {
       flag: false,
-      title: '',
-      url: '',
+      title: 'タイトルサンプル',
+      url: 'url-sample',
       msg: '',
     }
   },
@@ -101,6 +100,7 @@ export default {
   > .article-create-modal {
     display: block;
     position: fixed;
+    padding: 15px 30px;
     top: 50%;
     left: 50%;
     width: 60%;
@@ -110,6 +110,41 @@ export default {
     background-color: #FFFFFF;
     border-radius: 5px;
     z-index: 200;
+    > .input-container {
+      padding: 15px;
+      > p {
+        border-bottom: solid 1px rgba(0,0,0,.5);
+        > span {
+          color: rgba(0,0,0,.5);
+          padding-right: 20px;
+        }
+        > input {
+          font-size: 1.2em;
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          appearance: none;
+          outline: none;
+          border: none;
+        }
+      }
+    }
+    > .create-btn-container {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      padding: 10px;
+      > button {
+        margin: 10px;
+      }
+      > .cancelBtn {
+        background-color: rgba(0,0,0,.1);
+        color: rgba(0,0,0,.7);
+        &:hover {
+          background-color: rgba(0,0,0,.3);
+          color: rgba(0,0,0,.5);
+        }
+      }
+    }
   }
   > #overlay {
     display: block;
