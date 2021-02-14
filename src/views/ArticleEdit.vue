@@ -231,7 +231,7 @@ export default {
       transform: translateX(-50%);
       z-index: 200;
       padding: 10px;
-      border: solid 1px rgba(0,0,0,.1);
+      border: solid 1px rgba(0,0,0,.3);
       background-color: white;
       > .typeSelectBtnContainer {
         > button {
@@ -372,6 +372,10 @@ table {
   > .articlePropaty {
     > td {
       padding: 10px;
+      border-bottom: solid 1px rgba(0,0,0,.1);
+      &:hover {
+        background-color: rgba(0,0,0,.1);
+      }
       > input {
         -webkit-appearance: none;
         -moz-appearance: none;
@@ -383,32 +387,22 @@ table {
     > th {
       padding: 10px;
       background-color: rgba(0,0,0,.4);
+      border-bottom: solid 1px rgba(0,0,0,.1);
       > span {
         font-size: 0.9rem;
         color:white;
       }
     }
   }
-  :nth-child(1) {
+  :nth-child(3) {
     > td {
-      border-bottom: solid 1px rgba(0,0,0,.1);
+      border: none;
       &:hover {
-        background-color: rgba(0,0,0,.1);
+        background-color: transparent;
       }
     }
     > th {
-      border-bottom: solid 1px rgba(0,0,0,.1);
-    }
-  }
-  :nth-child(2) {
-    > td {
-      border-bottom: solid 1px rgba(0,0,0,.1);
-      &:hover {
-        background-color: rgba(0,0,0,.1);
-      }
-    }
-    > th {
-      border-bottom: solid 1px rgba(0,0,0,.1);
+      border: none;
     }
   }
 }
