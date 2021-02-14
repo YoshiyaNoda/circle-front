@@ -59,6 +59,9 @@
               <div class="typeSelectBtnContainer">
                 <button @click="addElement(d.order+1, 'paragraph')"><span>テキスト</span></button>
               </div>
+              <div class="typeSelectBtnContainer">
+                <button @click="addElement(d.order+1, 'image')"><span>画像</span></button>
+              </div>
             </div>
           </div>
           <div class="addBtnContainer">
