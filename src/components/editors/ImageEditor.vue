@@ -69,7 +69,10 @@ export default {
     appearance: none;
     outline: none;
     padding: 10px;
-    background-color: red;
+    background-color: #ECECEC;
+    background-image: -webkit-gradient(linear, 0 0, 100% 100%,color-stop(.25, #F9F9F9), color-stop(.25, transparent),color-stop(.5, transparent), color-stop(.5, #F9F9F9),color-stop(.75, #F9F9F9), color-stop(.75, transparent),to(transparent));
+    -webkit-background-size: 14px 14px;
+    background-size: 14px 14px;
     box-sizing: border-box;
     > img {
       width: 100%;
