@@ -100,6 +100,7 @@ export default {
     appearance: none;
     outline: none;
     padding: 10px;
+    box-sizing: border-box;
   }
 }
 </style>

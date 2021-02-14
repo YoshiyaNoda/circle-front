@@ -70,6 +70,7 @@ export default {
     outline: none;
     padding: 10px;
     background-color: red;
+    box-sizing: border-box;
     > img {
       width: 100%;
     }
