@@ -122,4 +122,19 @@ export default {
     z-index: 100;
   }
 }
+button {
+  font: inherit;
+  color: white;
+  background-color: rgb(255, 111, 1);
+  border: solid 1px rgba(0,0,0,.1);
+  border-radius: 3px;
+  padding: 10px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  outline: none;
+  &:hover {
+    background-color: rgb(225, 103, 37);
+  }
+}
 </style>
