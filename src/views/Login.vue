@@ -1,8 +1,8 @@
 <template>
   <div class="wrapper">
     <div class="explanation">
-      <h1>Login</h1>
-      <p>初めての方も、そうでない方も、以下のボタンをクリックしてログインできます。</p>
+      <h1>ログイン</h1>
+      <p>以下のボタンをクリックして、ログインあるいは新規登録できます。</p>
     </div>
     <div class="login">
       <div class="loginBtnContainer">
@@ -39,12 +39,12 @@ export default {
   }
   > .login {
     position: relative;
-    border: 1px solid rgba(0,0,0,.1);
-    border-radius: 5px;
+    // border: 1px solid rgba(0,0,0,.1);
+    // border-radius: 5px;
     width: 100%;
     min-height: 100px;
     margin: 0 auto;
-    background-color: rgba(200,200,220,.1);
+    // background-color: rgba(200,200,220,.1);
     > .loginBtnContainer {
       position: absolute;
       top: 50%;
