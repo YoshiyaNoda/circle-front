@@ -67,6 +67,7 @@ export default {
 <style lang="scss"> // scopedにするとclassにスタイルが適用されない
 .previewContainer {
   width: 100%;
+  padding: 15px 0;
 }
 .paddingContainer {
   padding: 20px 60px;
