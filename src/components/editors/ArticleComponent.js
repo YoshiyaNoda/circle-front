@@ -29,6 +29,16 @@ export const ArticleComponent = {
         'content': '<p>本文</p>'
       }
     }
-    
+  },
+  'image': {
+    'normal': {
+      'order': 0,
+      'type': 'image',
+      'option': 'normal',
+      'data': {
+        'content': '',
+        'url': ''
+      }
+    }
   }
 }
