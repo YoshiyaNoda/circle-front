@@ -10,11 +10,20 @@
 		</div>
     <div class="editorArea" v-show="selectedTab === 1">
       <h1>記事の編集</h1>
-      <div class="title-and-url-edit-area">
-        <p class="articlePropaty"><span>タイトル</span><input type="text" v-model="title"></p>
-        <p class="articlePropaty"><span>URL</span><input type="text" v-model="url"></p>
-        <p class="articlePropaty"><span>閲覧用URL</span>https://circle-website-creation.com/website/{{ user_id }}/{{ url }}</p>
-      </div>
+      <table class="title-and-url-edit-area">
+        <tr class="articlePropaty">
+          <th><span>タイトル</span></th>
+          <td><input type="text" v-model="title"></td>
+        </tr>
+        <tr class="articlePropaty">
+          <th><span>URL</span></th>
+          <td><input type="text" v-model="url"></td>
+        </tr>
+        <tr class="articlePropaty">
+          <th><span>閲覧用URL</span></th>
+          <td>https://circle-website-creation.com/website/{{ user_id }}/{{ url }}</td>
+        </tr>
+      </table>
       <div class="main-editor-container">
         <div class="iterContainer">
           <div class="typeSelectContainer" v-show="displayedTypeSelect === 0" >
@@ -355,19 +364,52 @@ export default {
   background-color: rgba(200,200,200,.6);
   z-index: 100;
 }
-.articlePropaty {
-  border-bottom: solid 1px rgba(0,0,0,.1);
-  > input {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    outline: none;
-    border: none;
+table {
+  margin: 30px auto;
+  border: solid 1px rgba(0,0,0,.1);
+  border-collapse: collapse;
+  width: 80%;
+  > .articlePropaty {
+    > td {
+      padding: 10px;
+      > input {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        outline: none;
+        border: none;
+      }
+    }
+    > th {
+      padding: 10px;
+      background-color: rgba(0,0,0,.4);
+      > span {
+        font-size: 0.9rem;
+        color:white;
+      }
+    }
   }
-  > span {
-    font-size: 0.9rem;
-    color:rgba(0,0,0,.6);
-    margin-right: 10px;
+  :nth-child(1) {
+    > td {
+      border-bottom: solid 1px rgba(0,0,0,.1);
+      &:hover {
+        background-color: rgba(0,0,0,.1);
+      }
+    }
+    > th {
+      border-bottom: solid 1px rgba(0,0,0,.1);
+    }
+  }
+  :nth-child(2) {
+    > td {
+      border-bottom: solid 1px rgba(0,0,0,.1);
+      &:hover {
+        background-color: rgba(0,0,0,.1);
+      }
+    }
+    > th {
+      border-bottom: solid 1px rgba(0,0,0,.1);
+    }
   }
 }
 .save-btn-container {
