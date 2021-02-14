@@ -3,11 +3,10 @@
       <div class="customBtnContainer">
         <button>何か</button>
       </div>
-      <div class="imageEditor" @click="selectImage">
+      <div class="imageEditor" @click="setMySelfToSelector">
         <img :src="d.data.url ? d.data.url: require('@/assets/live.jpg')" alt="画像">
       </div>
     </div>
-    <!-- <textarea type="text" v-model="d.data.content"></textarea> -->
 </template>
 
 <script>
@@ -23,9 +22,9 @@ export default {
     }
   },
   methods: {
-    selectImage() {
-      console.log("画像選択")
-    }
+    setMySelfToSelector() {
+      this.$parent.setSelectedImageEditor(this)
+    },
   },
   watch: {
     articleData: function(data) {
