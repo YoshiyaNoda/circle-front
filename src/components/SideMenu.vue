@@ -12,9 +12,9 @@
         <li>
           <router-link to="/auth/select-articles">Create Web Site</router-link>
         </li>
-        <li>
+        <!-- <li>
           <router-link to="/website">Sample</router-link>
-        </li>
+        </li> -->
         <li>
           <p style="color: white;">{{ name }}</p>
         </li>
