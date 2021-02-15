@@ -1,14 +1,27 @@
 <template>
   <div class="imageSelectorContainer">
     <div class="uploadArea">
-      <button>アップロード</button>
+      <button @click="emitClick">アップロード</button>
+      <input type="file" @change="upload(e.target.file[0])" name="image" ref="imageForm"  accept="image/*" >
     </div>
   </div>
 </template>
 
 <script>
 export default {
-
+  data() {
+    return {
+      image: null
+    }
+  },
+  methods: {
+    upload(file) {
+      this.image = file
+    },
+    emitClick() {
+      this.$refs.imageForm.click()
+    }
+  }
 }
 </script>
 
@@ -41,6 +54,9 @@ export default {
       &:hover {
         background-color: rgba(0,0,0,.2);
       }
+    }
+    > input {
+      display: none;
     }
   }
 }
