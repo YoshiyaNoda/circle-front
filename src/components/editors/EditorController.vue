@@ -36,7 +36,10 @@ export default {
   },
   methods: {
     setSelectedImageEditor(editor) {
-      this.selectedImageEditor = editor;
+      this.selectedImageEditor = editor
+    },
+    checkIsImageEditorSet() {
+      return this.selectedImageEditor
     }
   },
   props: {
