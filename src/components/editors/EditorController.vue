@@ -9,7 +9,7 @@
     <div v-if="articleData.type === 'image'">
       <ImageEditor :article-data="d"/>
     </div>
-    <transition>
+    <transition name="imageSelector">
       <ImageSelector v-show="selectedImageEditor" />
     </transition>
   </div>
@@ -52,5 +52,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.imageSelector-enter-active, .imageSelector-leave-active {
+  transition: .5s;
+}
+.imageSelector-enter, .imageSelector-leave-to {
+  right: -20%;
+}
 </style>

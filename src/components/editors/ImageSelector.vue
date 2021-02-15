@@ -20,5 +20,6 @@ export default {
   border: solid 1px rgba(0,0,0,.2);
   border-right: none;
   background-color: rgba(0,0,0,.6);
+  z-index: 200;
 }
 </style>
