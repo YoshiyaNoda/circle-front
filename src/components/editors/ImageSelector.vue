@@ -2,21 +2,17 @@
   <div class="imageSelectorContainer">
     <div class="uploadArea">
       <button @click="emitClick">アップロード</button>
-      <input type="file" @change="upload(e.target.file[0])" name="image" ref="imageForm"  accept="image/*" >
+      <input type="file" @change="upload" name="image" ref="imageForm"  accept="image/*" >
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      image: null
-    }
-  },
   methods: {
-    upload(file) {
-      this.image = file
+    upload(e) {
+      const file = e.target.files[0]
+      console.log(file)
     },
     emitClick() {
       this.$refs.imageForm.click()
