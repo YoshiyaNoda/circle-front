@@ -83,6 +83,7 @@ export default {
       height: 100%;
       min-width: 50px;
       padding: 3px 8px;
+      outline: none;
       background-color: transparent;
       border: solid 1px transparent;
       margin: 0 5px;
