@@ -56,7 +56,7 @@ export default {
 
 <style lang="scss" scoped>
 .imageSelector-enter-active, .imageSelector-leave-active {
-  transition: .5s;
+  transition: .25s;
 }
 .imageSelector-enter, .imageSelector-leave-to {
   right: -20%;
