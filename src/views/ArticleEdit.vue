@@ -80,6 +80,9 @@
     <div class="previewArea" v-show="selectedTab === 2">
 			<Preview :article-data="articleData"/>
 		</div>
+    <transition name="imageSelector">
+      <ImageSelector v-show="selectedImageEditor" />
+    </transition>
   </div>
 </template>
 
@@ -88,9 +91,11 @@ import { ArticleComponent } from '@/components/editors/ArticleComponent.js'
 import EditorController from '@/components/editors/EditorController.vue'
 import Preview from '@/components/editors/Preview.vue'
 import _ from 'lodash'
+import ImageSelector from '@/components/editors/ImageSelector.vue'
+
 export default {
   components: {
-    EditorController, Preview
+    EditorController, Preview, ImageSelector
   },
   data() {
     return {
@@ -100,10 +105,12 @@ export default {
       user_id: 0,
       displayedTypeSelect: -1,
       selectedTab: 1,
+      selectedImageEditor: null
     }
   },
   mounted() {
     this.fetchArticleData()
+    this.$imageSelectorStore.register(this)
   },
   methods: {
     async saveArticleData() {
@@ -434,5 +441,11 @@ table {
       background-color: rgb(225, 103, 37);
     }
   }
+}
+.imageSelector-enter-active, .imageSelector-leave-active {
+  transition: .25s;
+}
+.imageSelector-enter, .imageSelector-leave-to {
+  right: -20%;
 }
 </style>

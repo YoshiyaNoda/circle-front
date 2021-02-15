@@ -9,9 +9,6 @@
     <div v-if="articleData.type === 'image'">
       <ImageEditor :article-data="d"/>
     </div>
-    <transition name="imageSelector">
-      <ImageSelector v-show="selectedImageEditor" />
-    </transition>
   </div>
 </template> 
 
@@ -19,27 +16,16 @@
 import HeadingEditor from '@/components/editors/HeadingEditor.vue'
 import ParagraphEditor from '@/components/editors/ParagraphEditor.vue'
 import ImageEditor from '@/components/editors/ImageEditor.vue'
-import ImageSelector from '@/components/editors/ImageSelector.vue'
 
 export default {
   components: {
     HeadingEditor,
     ParagraphEditor,
     ImageEditor,
-    ImageSelector
   },
   data: function() {
     return {
       d: this.articleData,
-      selectedImageEditor: null
-    }
-  },
-  methods: {
-    setSelectedImageEditor(editor) {
-      this.selectedImageEditor = editor
-    },
-    checkIsImageEditorSet() {
-      return this.selectedImageEditor
     }
   },
   props: {
@@ -55,10 +41,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.imageSelector-enter-active, .imageSelector-leave-active {
-  transition: .25s;
-}
-.imageSelector-enter, .imageSelector-leave-to {
-  right: -20%;
-}
 </style>

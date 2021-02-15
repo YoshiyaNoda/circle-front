@@ -43,7 +43,23 @@ const store = {
   }
 };
 
+const imageSelectorStore = {
+  selectedImageEditor: null,
+  registerdArticleEdit: null,
+  checkIsImageEditorSet() {
+    return this.selectedImageEditor
+  },
+  setSelectedImageEditor(editor) {
+    this.selectedImageEditor = editor
+    this.registerdArticleEdit.selectedImageEditor = editor //sync
+  },
+  register(ele) {
+    this.registerdArticleEdit = ele
+  }
+};
+
 Vue.prototype.$store = store;
+Vue.prototype.$imageSelectorStore = imageSelectorStore;
 
 new Vue({
   router,

@@ -23,10 +23,10 @@ export default {
   },
   methods: {
     setMySelfToSelector() {
-      if(this.$parent.checkIsImageEditorSet()) {
-        this.$parent.setSelectedImageEditor(null)
+      if(this.$imageSelectorStore.checkIsImageEditorSet()) {
+        this.$imageSelectorStore.setSelectedImageEditor(null)
       } else {
-        this.$parent.setSelectedImageEditor(this)
+        this.$imageSelectorStore.setSelectedImageEditor(this)
       }
     },
   },
