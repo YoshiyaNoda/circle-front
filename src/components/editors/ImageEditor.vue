@@ -23,8 +23,12 @@ export default {
   },
   methods: {
     setMySelfToSelector() {
-      if(this.$imageSelectorStore.checkIsImageEditorSet()) {
+      if(this.$imageSelectorStore.checkIsImageEditorSet() === this) {
         this.$imageSelectorStore.setSelectedImageEditor(null)
+      } else if(this.$imageSelectorStore.checkIsImageEditorSet()) {
+        this.$imageSelectorStore.setSelectedImageEditor(null)
+        const func = () =>  this.$imageSelectorStore.setSelectedImageEditor(this)
+        setTimeout(func, 200)
       } else {
         this.$imageSelectorStore.setSelectedImageEditor(this)
       }
