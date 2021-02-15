@@ -1,5 +1,8 @@
 <template>
   <div class="imageSelectorContainer">
+    <div class="btnContainer">
+      <button @click="close">閉じる</button>
+    </div>
     <div class="uploadArea">
       <button @click="emitClick">アップロード</button>
       <input type="file" @change="upload" name="image" ref="imageForm"  accept="image/*" >
@@ -23,6 +26,9 @@ export default {
     }
   },
   methods: {
+    close() {
+      this.$imageSelectorStore.setSelectedImageEditor(null)
+    },
     async fetchImageList() {
       const url = "fetch-image-list"
       const params = new URLSearchParams()
@@ -74,8 +80,24 @@ export default {
   background-color:rgb(240, 240, 240);
   z-index: 200;
   padding: 5px;
+  > .btnContainer {
+    width: 100%;
+    > button {
+      width:100%;
+      margin: 0px auto;
+      color: gray;
+      border: solid 1px rgba(0,0,0,.2);
+      background-color: white;
+      outline: none;
+      &:hover {
+        background-color: rgba(0,0,0,.2);
+      }
+    }
+  }
   > .imageListArea {
     width: 100%;
+    height: 75%;
+    overflow-y: scroll;
     > .image {
       width: 100%;
       > img {
@@ -84,8 +106,8 @@ export default {
     }
   }
   > .uploadArea {
-    width:80%;
-    height:100px;
+    width: 100%;
+    height: 15%;
     margin: 10px auto;
     border: solid 1px rgba(0,0,0,.2);
     background-color: white;
