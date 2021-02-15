@@ -38,6 +38,9 @@ export default {
       color: gray;
       cursor: pointer;
       outline: none;
+      &:hover {
+        background-color: rgba(0,0,0,.2);
+      }
     }
   }
 }
