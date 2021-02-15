@@ -59,8 +59,8 @@ export default {
         }
         else if(obj.type === 'image') {
           if(obj.option === 'normal') {
-            if(obj.data.content) {
-              html += '<div class="imageContainer"><img src="' + obj.data.url + ' alt="画像"></div>\n'
+            if(obj.data.url) {
+              html += '<div class="imageContainer"><img src="' + obj.data.url + '" alt="画像"></div>\n'
             } else {
               html += '<div class="imageContainer"><img src="' + require('@/assets/live.jpg') + '" alt="画像"></div>\n'
             }

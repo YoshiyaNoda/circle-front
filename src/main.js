@@ -55,6 +55,9 @@ const imageSelectorStore = {
   },
   register(ele) {
     this.registerdArticleEdit = ele
+  },
+  setURL(url) {
+    this.selectedImageEditor.setURL(url)
   }
 };
 

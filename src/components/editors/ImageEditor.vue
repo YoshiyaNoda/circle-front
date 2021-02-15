@@ -22,6 +22,9 @@ export default {
     }
   },
   methods: {
+    setURL(url) {
+      this.d.data.url = url
+    },
     setMySelfToSelector() {
       if(this.$imageSelectorStore.checkIsImageEditorSet() === this) {
         this.$imageSelectorStore.setSelectedImageEditor(null)

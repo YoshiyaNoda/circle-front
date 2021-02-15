@@ -8,7 +8,7 @@
       <input type="file" @change="upload" name="image" ref="imageForm"  accept="image/*" >
     </div>
     <div class="imageListArea">
-      <div class="image" v-for="(image, idx) in imageList" :key="'image'+idx">
+      <div class="image" v-for="(image, idx) in imageList" :key="'image'+idx" @click="setURL(image.read_path)">
         <img :src="image.read_path">
       </div>
     </div>
@@ -26,6 +26,9 @@ export default {
     }
   },
   methods: {
+    setURL(url) {
+      this.$imageSelectorStore.setURL(url)
+    },
     close() {
       this.$imageSelectorStore.setSelectedImageEditor(null)
     },
