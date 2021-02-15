@@ -10,9 +10,18 @@
 <script>
 export default {
   methods: {
-    upload(e) {
+    async upload(e) {
       const file = e.target.files[0]
-      console.log(file)
+      const url = "upload-image"
+      const params = new FormData() //URLSearchParamsではうまくいかない
+      params.append('image', file)
+      params.append('token', this.$store.token)
+      await this.$axios.post(url, params).then(res => {
+        console.log(res.data)
+      }).catch(e => {
+        console.log(e)
+        alert('この画像はアップロードできません。')
+      })
     },
     emitClick() {
       this.$refs.imageForm.click()
