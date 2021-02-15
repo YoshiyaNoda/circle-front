@@ -77,6 +77,10 @@ export default {
     -webkit-background-size: 14px 14px;
     background-size: 14px 14px;
     box-sizing: border-box;
+    cursor: pointer;
+    &:hover {
+      opacity: 0.6;
+    }
     > img {
       width: 100%;
     }
