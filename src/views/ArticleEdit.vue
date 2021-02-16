@@ -84,6 +84,7 @@ export default {
   },
   methods: {
     async saveArticleData() {
+
       if(this.$store.checkTokenIsSet()) {
         const url = "save-article-data"
         const params = new URLSearchParams()

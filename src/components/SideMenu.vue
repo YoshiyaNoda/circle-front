@@ -35,6 +35,8 @@ export default {
       'name': this.$store.name,
     };
   }
+
+
 }
 </script>
 

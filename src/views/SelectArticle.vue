@@ -18,7 +18,10 @@ export default {
   },
   data() {
     return {
-      'articleList': []
+      'articleList': [],
+      'token': this.$store.token,
+      'email': this.$store.email,
+      'name': this.$store.name,
     };
   },
   mounted() {
@@ -30,6 +33,8 @@ export default {
       this.$router.push({ path: '/auth/edit-article' })
     },
     async fetchArticleList() {
+      
+
       if(this.$store.checkTokenIsSet()) {
         // tokenがあるかどうかを確認する処理をする。
         const url = "fetch-article-list";

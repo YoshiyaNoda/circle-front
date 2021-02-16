@@ -8,7 +8,8 @@ Vue.config.productionTip = false;
 
 Vue.prototype.$axios = axios.create({
   baseURL: "http://localhost:8000/api",
-  timeout: 10000
+  timeout: 10000,
+  
 });
 
 const store = {
@@ -19,6 +20,8 @@ const store = {
   setUserData(queries) {
     this.updateUserData(this, queries);
     this.updateObservable(queries);
+
+
   },
   ObservableComponetns: [],
   updateObservable(queries) {
@@ -44,7 +47,28 @@ const store = {
 
 Vue.prototype.$store = store;
 
+
+
+
+
+
 new Vue({
   router,
-  render: h => h(App)
+  render: h => h(App),
+  created(){
+    if(!this.$store.checkTokenIsSet()){
+      this.$axios.get("session-token",{withCredentials: true}).then((response) => {
+       const queries=
+       {
+         'token':response.data[0].token,
+         'email':response.data[0].email,
+         'name':response.data[0].name
+       };
+       //this.$store.appendObservable(this);
+       this.$store.setUserData(queries);
+       //console.log(response.data[0].token)
+       
+      });
+    }
+  }
 }).$mount("#app");
