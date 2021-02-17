@@ -2,6 +2,7 @@
     <div :class="{ imageEditorContainer: true, active: isActive }">
       <div class="customBtnContainer">
         <button>何か</button>
+        <button class="deleteBtn"><i class="fas fa-trash-alt fa-lg"></i></button>
       </div>
       <div class="imageEditor" @click="setMySelfToSelector">
         <img :src="d.data.url ? d.data.url: require('@/assets/live.jpg')" alt="画像">
@@ -72,6 +73,13 @@ export default {
       margin: 0 5px;
       &:hover {
         background-color: rgba(0,0,0,.1);
+      }
+    }
+    > .deleteBtn {
+      float: right;
+      color: gray;
+      &:hover {
+        color: red;
       }
     }
   }
