@@ -78,5 +78,22 @@ Vue.prototype.$imageSelectorStore = imageSelectorStore;
 
 new Vue({
   router,
-  render: h => h(App)
+  render: h => h(App),
+  created(){
+    if(!this.$store.checkTokenIsSet()){
+      this.$axios.get("session-token",{withCredentials: true}).then((response) => {
+       const userData =
+       {
+         'token':response.data[0].token,
+         'email':response.data[0].email,
+         'name':response.data[0].name
+       };
+       //this.$store.appendObservable(this);
+       this.$store.setUserData(userData);
+       this.$router.push({ path: '/auth/select-articles' });
+       //console.log(response.data[0].token)
+       
+      });
+    }
+  }
 }).$mount("#app");

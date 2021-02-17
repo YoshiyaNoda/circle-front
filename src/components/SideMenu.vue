@@ -3,8 +3,11 @@
     <div class="linkContainer">
       <h1>LOGO</h1>
       <ul>
-        <li>
+        <li v-if="token === ''">
           <router-link to="/login">Sign in/up</router-link>
+        </li>
+        <li v-else>
+          <router-link to="/logout">Sign out</router-link>
         </li>
         <li>
           <router-link to="/">Home</router-link>

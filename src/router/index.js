@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import LP from "../views/LandingPage.vue";
 import WebSite from "../views/WebSite.vue";
 import Login from "../views/Login.vue";
+import Logout from "../views/Logout.vue";
 import SelectArticle from "../views/SelectArticle.vue";
 import AuthFinished from "../views/AuthFinished.vue";
 import AuthFailed from "../views/AuthFailed.vue";
@@ -24,6 +25,11 @@ const routes = [
     path: "/login",
     name: "Login",
     component: Login,
+  },
+  {
+    path: "/logout",
+    name: "Logout",
+    component: Logout,
   },
   // ------------auth/*は認証されていなければ、認証画面に遷移するようにする。-------------
   {
