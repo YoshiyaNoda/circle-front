@@ -1,5 +1,5 @@
 <template>
-    <div class="imageEditorContainer">
+    <div :class="{ imageEditorContainer: true, active: isActive }">
       <div class="customBtnContainer">
         <button>何か</button>
       </div>
@@ -18,10 +18,14 @@ export default {
   },
   data: function() {
     return {
-      d: this.articleData
+      d: this.articleData,
+      isActive: false
     }
   },
   methods: {
+    setActive(boolean) {
+      this.isActive = boolean;
+    },
     setURL(url) {
       this.d.data.url = url
     },
@@ -92,6 +96,12 @@ export default {
     > img {
       width: 100%;
     }
+  }
+}
+.active {
+  border: solid 1px rgb(255, 111, 1);
+  &:hover {
+    border: solid 1px rgb(255, 111, 1);
   }
 }
 </style>
