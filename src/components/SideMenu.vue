@@ -40,7 +40,7 @@ export default {
 
 <style scoped lang="scss">
 #sidemenu {
-  width: 15%;
+  width: 18%;
   // background-color: rgba(200,200,230,.2);
   background-color: black;
   border-right: 1px solid gray;
