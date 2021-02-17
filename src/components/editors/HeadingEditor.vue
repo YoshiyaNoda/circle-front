@@ -2,7 +2,7 @@
     <div class="headingEditorContainer">
       <div class="customBtnContainer">
         <!-- <button @click="makeStrong">色とか?</button> -->
-        <button class="deleteBtn"><i class="fas fa-trash-alt fa-lg"></i></button>
+        <button class="deleteBtn" @click="deleteMe"><i class="fas fa-trash-alt fa-lg"></i></button>
       </div>
       <div contenteditable="true" @input="sync" ref="wysiwygEditor" role="textbox" class="headingEditor" v-on:keydown.enter.exact.prevent></div>
     </div>
@@ -23,6 +23,9 @@ export default {
     }
   },
   methods: {
+    deleteMe() {
+      this.$parent.$parent.deleteArticle(this.d)
+    },
     makeStrong() {
       const selection = window.getSelection()
       if(selection.rangeCount > 0 && !selection.isCollapsed) {

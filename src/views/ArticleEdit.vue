@@ -113,6 +113,16 @@ export default {
     this.$imageSelectorStore.register(this)
   },
   methods: {
+    deleteArticle(article) {
+      const arr = this.articleData.filter(d => d.order !== article.order)
+      this.articleData = arr.map(d => {
+        if(d.order > article.order) {
+          d.order -= 1
+          return d
+        }
+        return d
+      })
+    },
     async saveArticleData() {
       if(this.$store.checkTokenIsSet()) {
         const url = "save-article-data"

@@ -2,7 +2,7 @@
     <div :class="{ imageEditorContainer: true, active: isActive }">
       <div class="customBtnContainer">
         <!-- <button>何か</button> -->
-        <button class="deleteBtn"><i class="fas fa-trash-alt fa-lg"></i></button>
+        <button class="deleteBtn" @click="deleteMe"><i class="fas fa-trash-alt fa-lg"></i></button>
       </div>
       <div class="imageEditor" @click="setMySelfToSelector">
         <img :src="d.data.url ? d.data.url: require('@/assets/live.jpg')" alt="画像">
@@ -24,6 +24,12 @@ export default {
     }
   },
   methods: {
+    deleteMe() {
+      this.$parent.$parent.deleteArticle(this.d)
+      if(this.$imageSelectorStore.checkIsImageEditorSet() === this) { // なんか煩雑になってきたな...
+        this.$imageSelectorStore.setSelectedImageEditor(null)
+      }
+    },
     setActive(boolean) {
       this.isActive = boolean;
     },
