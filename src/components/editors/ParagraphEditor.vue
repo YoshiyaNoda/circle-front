@@ -2,6 +2,7 @@
     <div class="paragraphEditorContainer">
       <div class="customBtnContainer">
         <button @click="makeStrong">強調</button>
+        <button class="deleteBtn" @click="deleteMe"><i class="fas fa-trash-alt fa-lg"></i></button>
       </div>
       <div contenteditable="true" @input="sync" ref="wysiwygEditor" role="textbox" aria-multiline="true" class="paragraphEditor"></div>
     </div>
@@ -22,6 +23,9 @@ export default {
     }
   },
   methods: {
+    deleteMe() {
+      this.$parent.$parent.deleteArticle(this.d)
+    },
     makeStrong() {
       const selection = window.getSelection()
       if(selection.rangeCount > 0 && !selection.isCollapsed) {
@@ -83,11 +87,19 @@ export default {
       height: 100%;
       min-width: 50px;
       padding: 3px 8px;
+      outline: none;
       background-color: transparent;
       border: solid 1px transparent;
       margin: 0 5px;
       &:hover {
         background-color: rgba(0,0,0,.1);
+      }
+    }
+    > .deleteBtn {
+      float: right;
+      color: gray;
+      &:hover {
+        color: red;
       }
     }
   }
@@ -100,6 +112,7 @@ export default {
     appearance: none;
     outline: none;
     padding: 10px;
+    box-sizing: border-box;
   }
 }
 </style>

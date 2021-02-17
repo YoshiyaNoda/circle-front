@@ -43,7 +43,38 @@ const store = {
   }
 };
 
+const imageSelectorStore = {
+  selectedImageEditor: null,
+  registerdArticleEdit: null,
+  checkIsImageEditorSet() {
+    return this.selectedImageEditor
+  },
+  setSelectedImageEditor(editor) {
+    if(editor) {
+      if(this.selectedImageEditor) {
+        this.selectedImageEditor.setActive(false) //オレンジ色の枠線を消す
+      } 
+      this.selectedImageEditor = editor
+      this.selectedImageEditor.setActive(true) //オレンジ色の枠線をつける
+    } else {
+      // nullがきた時
+      if(this.selectedImageEditor) {
+        this.selectedImageEditor.setActive(false) //オレンジ色の枠線を消す
+      }
+      this.selectedImageEditor = editor
+    }
+    this.registerdArticleEdit.selectedImageEditor = editor //sync
+  },
+  register(ele) {
+    this.registerdArticleEdit = ele
+  },
+  setURL(url) {
+    this.selectedImageEditor.setURL(url)
+  }
+};
+
 Vue.prototype.$store = store;
+Vue.prototype.$imageSelectorStore = imageSelectorStore;
 
 new Vue({
   router,

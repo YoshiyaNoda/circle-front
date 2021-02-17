@@ -57,6 +57,15 @@ export default {
             html += '<div class="paddingContainer">' + obj.data.content + '</div>\n'
           }
         }
+        else if(obj.type === 'image') {
+          if(obj.option === 'normal') {
+            if(obj.data.url) {
+              html += '<div class="imageContainer"><img src="' + obj.data.url + '" alt="画像"></div>\n'
+            } else {
+              html += '<div class="imageContainer"><img src="' + require('@/assets/live.jpg') + '" alt="画像"></div>\n'
+            }
+          }
+        }
       }
       return html
     }
@@ -66,11 +75,17 @@ export default {
 
 <style lang="scss"> // scopedにするとclassにスタイルが適用されない
 .previewContainer {
-  padding: 50px 0;
   width: 100%;
+  padding: 15px 0;
 }
 .paddingContainer {
   padding: 20px 60px;
+}
+.imageContainer {
+  width: 100%;
+  > img {
+    width: 100%;
+  }
 }
 .previewBtnContainer {
   position: relative;

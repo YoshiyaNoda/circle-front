@@ -10,11 +10,20 @@
 		</div>
     <div class="editorArea" v-show="selectedTab === 1">
       <h1>記事の編集</h1>
-      <div class="title-and-url-edit-area">
-        <p class="articlePropaty"><span>タイトル</span><input type="text" v-model="title"></p>
-        <p class="articlePropaty"><span>URL</span><input type="text" v-model="url"></p>
-        <p class="articlePropaty"><span>閲覧用URL</span>https://circle-website-creation.com/website/{{ user_id }}/{{ url }}</p>
-      </div>
+      <table class="title-and-url-edit-area">
+        <tr class="articlePropaty">
+          <th><span>タイトル</span></th>
+          <td><input type="text" v-model="title"></td>
+        </tr>
+        <tr class="articlePropaty">
+          <th><span>URL</span></th>
+          <td><input type="text" v-model="url"></td>
+        </tr>
+        <tr class="articlePropaty">
+          <th><span>閲覧用URL</span></th>
+          <td>https://circle-website-creation.com/website/{{ user_id }}/{{ url }}</td>
+        </tr>
+      </table>
       <div class="main-editor-container">
         <div class="iterContainer">
           <div class="typeSelectContainer" v-show="displayedTypeSelect === 0" >
@@ -24,6 +33,9 @@
               </div>
               <div class="typeSelectBtnContainer">
                 <button @click="addElement(0, 'paragraph')"><span>テキスト</span></button>
+              </div>
+              <div class="typeSelectBtnContainer">
+                <button @click="addElement(0, 'image')"><span>画像</span></button>
               </div>
             </div>
           </div>
@@ -47,6 +59,9 @@
               <div class="typeSelectBtnContainer">
                 <button @click="addElement(d.order+1, 'paragraph')"><span>テキスト</span></button>
               </div>
+              <div class="typeSelectBtnContainer">
+                <button @click="addElement(d.order+1, 'image')"><span>画像</span></button>
+              </div>
             </div>
           </div>
           <div class="addBtnContainer">
@@ -65,6 +80,9 @@
     <div class="previewArea" v-show="selectedTab === 2">
 			<Preview :article-data="articleData"/>
 		</div>
+    <transition name="imageSelector">
+      <ImageSelector v-show="selectedImageEditor" />
+    </transition>
   </div>
 </template>
 
@@ -73,9 +91,11 @@ import { ArticleComponent } from '@/components/editors/ArticleComponent.js'
 import EditorController from '@/components/editors/EditorController.vue'
 import Preview from '@/components/editors/Preview.vue'
 import _ from 'lodash'
+import ImageSelector from '@/components/editors/ImageSelector.vue'
+
 export default {
   components: {
-    EditorController, Preview
+    EditorController, Preview, ImageSelector
   },
   data() {
     return {
@@ -85,12 +105,24 @@ export default {
       user_id: 0,
       displayedTypeSelect: -1,
       selectedTab: 1,
+      selectedImageEditor: null
     }
   },
   mounted() {
     this.fetchArticleData()
+    this.$imageSelectorStore.register(this)
   },
   methods: {
+    deleteArticle(article) {
+      const arr = this.articleData.filter(d => d.order !== article.order)
+      this.articleData = arr.map(d => {
+        if(d.order > article.order) {
+          d.order -= 1
+          return d
+        }
+        return d
+      })
+    },
     async saveArticleData() {
       if(this.$store.checkTokenIsSet()) {
         const url = "save-article-data"
@@ -222,7 +254,7 @@ export default {
       transform: translateX(-50%);
       z-index: 200;
       padding: 10px;
-      border: solid 1px rgba(0,0,0,.1);
+      border: solid 1px rgba(0,0,0,.3);
       background-color: white;
       > .typeSelectBtnContainer {
         > button {
@@ -355,19 +387,48 @@ export default {
   background-color: rgba(200,200,200,.6);
   z-index: 100;
 }
-.articlePropaty {
-  border-bottom: solid 1px rgba(0,0,0,.1);
-  > input {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    outline: none;
-    border: none;
+table {
+  margin: 30px auto;
+  border: solid 1px rgba(0,0,0,.1);
+  border-collapse: collapse;
+  width: 80%;
+  > .articlePropaty {
+    > td {
+      padding: 10px;
+      border-bottom: solid 1px rgba(0,0,0,.1);
+      width: 85%;
+      &:hover {
+        background-color: rgba(0,0,0,.1);
+      }
+      > input {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        outline: none;
+        border: none;
+        width: 100%;
+      }
+    }
+    > th {
+      padding: 10px;
+      background-color: rgba(0,0,0,.4);
+      border-bottom: solid 1px rgba(0,0,0,.1);
+      > span {
+        font-size: 0.9rem;
+        color:white;
+      }
+    }
   }
-  > span {
-    font-size: 0.9rem;
-    color:rgba(0,0,0,.6);
-    margin-right: 10px;
+  :nth-child(3) {
+    > td {
+      border: none;
+      &:hover {
+        background-color: transparent;
+      }
+    }
+    > th {
+      border: none;
+    }
   }
 }
 .save-btn-container {
@@ -392,5 +453,11 @@ export default {
       background-color: rgb(225, 103, 37);
     }
   }
+}
+.imageSelector-enter-active, .imageSelector-leave-active {
+  transition: .25s;
+}
+.imageSelector-enter, .imageSelector-leave-to {
+  right: -20%;
 }
 </style>

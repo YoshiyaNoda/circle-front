@@ -12,9 +12,9 @@
         <li>
           <router-link to="/auth/select-articles">Create Web Site</router-link>
         </li>
-        <li>
+        <!-- <li>
           <router-link to="/website">Sample</router-link>
-        </li>
+        </li> -->
         <li>
           <p style="color: white;">{{ name }}</p>
         </li>
@@ -40,7 +40,7 @@ export default {
 
 <style scoped lang="scss">
 #sidemenu {
-  width: 15%;
+  width: 18%;
   // background-color: rgba(200,200,230,.2);
   background-color: black;
   border-right: 1px solid gray;
