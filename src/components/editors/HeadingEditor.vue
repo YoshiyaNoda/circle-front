@@ -1,7 +1,8 @@
 <template>
     <div class="headingEditorContainer">
       <div class="customBtnContainer">
-        <button @click="makeStrong">色とか?</button>
+        <!-- <button @click="makeStrong">色とか?</button> -->
+        <button class="deleteBtn"><i class="fas fa-trash-alt fa-lg"></i></button>
       </div>
       <div contenteditable="true" @input="sync" ref="wysiwygEditor" role="textbox" class="headingEditor" v-on:keydown.enter.exact.prevent></div>
     </div>
@@ -89,6 +90,13 @@ export default {
       margin: 0 5px;
       &:hover {
         background-color: rgba(0,0,0,.1);
+      }
+    }
+    > .deleteBtn {
+      float: right;
+      color: gray;
+      &:hover {
+        color: red;
       }
     }
   }

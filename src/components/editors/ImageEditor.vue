@@ -1,7 +1,7 @@
 <template>
     <div :class="{ imageEditorContainer: true, active: isActive }">
       <div class="customBtnContainer">
-        <button>何か</button>
+        <!-- <button>何か</button> -->
         <button class="deleteBtn"><i class="fas fa-trash-alt fa-lg"></i></button>
       </div>
       <div class="imageEditor" @click="setMySelfToSelector">
