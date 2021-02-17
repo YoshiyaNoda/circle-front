@@ -396,6 +396,7 @@ table {
     > td {
       padding: 10px;
       border-bottom: solid 1px rgba(0,0,0,.1);
+      width: 85%;
       &:hover {
         background-color: rgba(0,0,0,.1);
       }
@@ -405,6 +406,7 @@ table {
         appearance: none;
         outline: none;
         border: none;
+        width: 100%;
       }
     }
     > th {
