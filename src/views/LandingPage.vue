@@ -12,16 +12,6 @@
         <p>簡単にWebサイトを作りましょう</p>
       </div>
     </div>
-    <!-- <div class="content">
-      <div class="account">
-        <h1>Intro.</h1>
-        <p>多くのサークルや団体には、当たり前のようにホームページ、あるいはWebサイトがありますよね。</p>
-        <p>一体誰が管理しているのでしょうか。</p>
-        <p>その管理者が引退したあとは...?</p>
-        <p>毎年引き継ぐのは大変ですよね。</p>
-        <p>そういった不安を解決するために、このアプリケーションを作りました。</p>
-      </div>
-    </div> -->
   </div>
 </template>
 
@@ -35,17 +25,8 @@ export default {
   width: 100%;
   background-color: rgba(36, 36, 36, 0.9);
   height: 100%;
-  > .content {
-    padding: 30px;
-    color: white;
-    > .account {
-      background-color: rgba(0,0,0,.9);
-      padding: 30px;
-      text-align: center;
-      > h1 {
-        border-bottom: solid 1px white;
-      }
-    }
+  @media screen and (max-width: 480px) {
+    min-height: 1000px;
   }
   > .bgContainer {
     position: fixed;
@@ -73,6 +54,16 @@ export default {
       text-align: center;
       > img {
         width: 100%;
+      }
+    }
+    @media screen and (max-width: 480px) {
+      > .msgHeadingContainer {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -70%);
+        color: white;
+        font-size: 1rem;
       }
     }
   }

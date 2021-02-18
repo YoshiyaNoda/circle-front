@@ -25,7 +25,7 @@ export default {
   color: #2c3e50;
   display: flex;
   justify-content: space-between;
-  min-height: 700px;
+  min-height: 1000px;
 }
 
 body {
