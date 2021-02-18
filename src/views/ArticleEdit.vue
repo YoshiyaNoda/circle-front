@@ -461,6 +461,11 @@ table {
     &:hover {
       background-color: rgb(225, 103, 37);
     }
+    @media screen and (max-width: 480px) {
+      & {
+        right: 0;
+      }
+    }
   }
 }
 .imageSelector-enter-active, .imageSelector-leave-active {

@@ -91,6 +91,8 @@ export default {
   position: relative;
   width: 100%;
   height: 100px;
+  padding: 20px 10px;
+  box-sizing: border-box;
   > button {
     position: absolute;
     right: 100px;
@@ -107,6 +109,12 @@ export default {
     outline: none;
     &:hover {
       background-color: rgb(225, 103, 37);
+    }
+    @media screen and (max-width: 480px) {
+      & {
+        right: 10px;
+        top: 20px;
+      }
     }
   }
 }
