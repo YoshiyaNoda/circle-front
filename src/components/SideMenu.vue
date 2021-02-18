@@ -1,7 +1,7 @@
 <template>
   <div id="sidemenu">
     <div class="linkContainer">
-      <h1>LOGO</h1>
+      <h1 class="logo">Circulator</h1>
       <ul>
         <li>
           <router-link to="/login">Sign in/up</router-link>
@@ -47,7 +47,9 @@ export default {
 }
 .linkContainer {
   padding: 30px;
-
+  > .logo {
+    color: white;
+  }
   > ul {
     padding: 5px;
     list-style-type: none;
