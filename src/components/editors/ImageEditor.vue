@@ -65,6 +65,12 @@ export default {
   &:hover {
     border: solid 1px rgba(0,0,0,.3);
   }
+  @media screen and (max-width: 480px) {
+    & {
+      margin: 0;
+      width: 100%;
+    }
+  }
   > .customBtnContainer {
     width: 100%;
     height: 40px;

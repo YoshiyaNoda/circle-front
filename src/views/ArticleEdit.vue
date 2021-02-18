@@ -198,6 +198,15 @@ export default {
 .article-edit-wrapper {
   > .editorArea {
     padding: 30px;
+    @media screen and (max-width: 480px) {
+      & {
+        padding: 15px;
+        > table {
+          margin: 0;
+          width: 100%;
+        }
+      }
+    }
   }
   > .tabArea {
     width: 100%;

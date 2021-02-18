@@ -76,8 +76,15 @@ export default {
   border: solid 1px rgba(0,0,0,.1);
   width: 80%;
   margin: 0 auto;
+  box-sizing: border-box;
   &:hover {
     border: solid 1px rgba(0,0,0,.3);
+  }
+  @media screen and (max-width: 480px) {
+    & {
+      margin: 0;
+      width: 100%;
+    }
   }
   > .customBtnContainer {
     width: 100%;
@@ -112,6 +119,7 @@ export default {
     appearance: none;
     outline: none;
     padding: 10px;
+    box-sizing: border-box;
   }
 }
 </style>
