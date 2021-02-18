@@ -5,7 +5,7 @@
         <h1 class="logo">Circulator</h1>
         <div class="toggleBtn" @click="setFlag">あ</div>
       </div>
-      <transition>
+      <transition name="togglemenu" @before-enter="beforeEnter" @enter="enter" @before-leave="beforeLeave" @leave="leave">
         <ul v-show="width > 480 || toggleFlag">
           <li>
             <router-link to="/login">Sign in/up</router-link>
@@ -33,7 +33,6 @@ export default {
   mounted() {
     this.$store.appendObservable(this);
     window.addEventListener('resize', this.handleResize)
-    console.log(this.width)
   },
   data() {
     return {
@@ -53,11 +52,25 @@ export default {
       // resizeのたびにこいつが発火するので、ここでやりたいことをやる
       this.width = window.innerWidth;
       this.height = window.innerHeight;
+    },
+    beforeEnter: function(el) {
+      el.style.height = '0'
+    },
+    enter: function(el) {
+      el.style.height = el.scrollHeight + 'px'
+    },
+    beforeLeave: function(el) {
+      el.style.height = el.scrollHeight + 'px'
+    },
+    leave: function(el) {
+      const func = () => el.style.height = '0' //これで要素が消えるまで待って、カクツキを抑えられた
+      setTimeout(func, 150)
     }
   },
   beforeDestroy: function () {
     window.removeEventListener('resize', this.handleResize)
   }
+  
 }
 </script>
 
@@ -98,27 +111,42 @@ export default {
     }
   }
 }
+.togglemenu-enter-active, .togglemenu-leave-active {
+  transition: .25s;
+}
+.togglemenu-enter, .togglemenu-leave-to {
+  opacity: 0;
+}
 @media screen and (max-width: 480px) {
   #sidemenu {
     width: 100%;
     border: none;
-    }
-    .linkContainer {
-      padding: 10px 20px;
-      > .menuFlexContainer {
-        color: white;
-        > .logo {
-          display: inline-block;
-          margin: 5px 0;
-          font-size: 25px;
-        }
-        > .toggleBtn {
-          display: block;
-          float: right;
-        }
+  }
+  .linkContainer {
+    padding: 10px 20px;
+    > .menuFlexContainer {
+      color: white;
+      > .logo {
+        display: inline-block;
+        margin: 5px 0;
+        font-size: 25px;
       }
-      > ul {
+      > .toggleBtn {
+        display: block;
+        float: right;
+      }
+    }
+    > ul {
+      margin: 0;
+      padding: 10px 0;
+      > li {
+        // height: 20px;
+        > p {
+          margin: 0;
+          padding: 5px 0;
+        }
       }
     }
   }
+}
 </style>
