@@ -3,7 +3,11 @@
     <div class="linkContainer">
       <div class="menuFlexContainer">
         <h1 class="logo">Circulator</h1>
-        <div class="toggleBtn" @click="setFlag">あ</div>
+        <div :class="{toggleBtn: true, active: toggleFlag}" @click="setFlag">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
       </div>
       <transition name="togglemenu" @before-enter="beforeEnter" @enter="enter" @before-leave="beforeLeave" @leave="leave">
         <ul v-show="width > 480 || toggleFlag">
@@ -64,7 +68,7 @@ export default {
     },
     leave: function(el) {
       const func = () => el.style.height = '0' //これで要素が消えるまで待って、カクツキを抑えられた
-      setTimeout(func, 150)
+      setTimeout(func, 250)
     }
   },
   beforeDestroy: function () {
@@ -112,7 +116,7 @@ export default {
   }
 }
 .togglemenu-enter-active, .togglemenu-leave-active {
-  transition: .25s;
+  transition: .35s;
 }
 .togglemenu-enter, .togglemenu-leave-to {
   opacity: 0;
@@ -134,6 +138,43 @@ export default {
       > .toggleBtn {
         display: block;
         float: right;
+        // position: relative;
+        padding: 5px;
+        > span {
+          font-size: 14px;
+          width: 25px;
+          height: 2px;
+          display: block;
+          background: white;
+          border-radius: 2px;
+          transition: .35s ease-in-out;
+          padding: 0;
+          box-sizing: border-box;
+          position: relative;
+        }
+        span:nth-child(1) {
+          top: 5px;
+        }
+        span:nth-child(2) {
+          top: 11px;
+        }
+        span:nth-child(3) {
+          top: 17px;
+        }
+      }
+      > .active {
+        span:nth-child(1) {
+          top: 12.5px;
+          transform: rotate(45deg);
+        }
+        span:nth-child(2) {
+          width: 0;
+          left: 50%;
+        }
+        span:nth-child(3) {
+          top: 9.5px;
+          transform: rotate(-45deg);
+        }
       }
     }
     > ul {
