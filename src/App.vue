@@ -35,4 +35,9 @@ body {
 .maincontentscontainer {
   width: 100%;
 }
+@media screen and (max-width: 480px) {
+  #app {
+    display: block;
+  }
+}
 </style>

@@ -1,7 +1,10 @@
 <template>
   <div id="sidemenu">
     <div class="linkContainer">
-      <h1 class="logo">Circulator</h1>
+      <div class="menuFlexContainer">
+        <h1 class="logo">Circulator</h1>
+        <div class="toggleBtn">あ</div>
+      </div>
       <ul>
         <li>
           <router-link to="/login">Sign in/up</router-link>
@@ -47,8 +50,13 @@ export default {
 }
 .linkContainer {
   padding: 30px;
-  > .logo {
-    color: white;
+  > .menuFlexContainer {
+    > .logo {
+      color: white;
+    }
+    > .toggleBtn {
+      display: none;
+    }
   }
   > ul {
     padding: 5px;
@@ -70,4 +78,44 @@ export default {
     }
   }
 }
+@media screen and (max-width: 480px) {
+  #sidemenu {
+    width: 100%;
+    border: none;
+    }
+    .linkContainer {
+      padding: 10px 20px;
+      > .menuFlexContainer {
+        color: white;
+        > .logo {
+          display: inline-block;
+          margin: 5px 0;
+          font-size: 25px;
+        }
+        > .toggleBtn {
+          display: block;
+          float: right;
+        }
+      }
+      > ul {
+        padding: 5px;
+        list-style-type: none;
+        > li {
+          padding: 5px;
+          a {
+            font-weight: bold;
+            // color: #2c3e50;
+            color: white;
+            text-decoration-line: none;
+            font-size: 0.8rem;
+
+            &.router-link-exact-active {
+              color: gray;
+            }
+          }
+
+        }
+      }
+    }
+  }
 </style>
