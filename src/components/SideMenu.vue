@@ -3,25 +3,27 @@
     <div class="linkContainer">
       <div class="menuFlexContainer">
         <h1 class="logo">Circulator</h1>
-        <div class="toggleBtn">あ</div>
+        <div class="toggleBtn" @click="setFlag">あ</div>
       </div>
-      <ul>
-        <li>
-          <router-link to="/login">Sign in/up</router-link>
-        </li>
-        <li>
-          <router-link to="/">Home</router-link>
-        </li>
-        <li>
-          <router-link to="/auth/select-articles">Create Web Site</router-link>
-        </li>
-        <!-- <li>
-          <router-link to="/website">Sample</router-link>
-        </li> -->
-        <li>
-          <p style="color: white;">{{ name }}</p>
-        </li>
-      </ul>
+      <transition>
+        <ul v-show="width > 480 || toggleFlag">
+          <li>
+            <router-link to="/login">Sign in/up</router-link>
+          </li>
+          <li>
+            <router-link to="/">Home</router-link>
+          </li>
+          <li>
+            <router-link to="/auth/select-articles">Create Web Site</router-link>
+          </li>
+          <!-- <li>
+            <router-link to="/website">Sample</router-link>
+          </li> -->
+          <li>
+            <p style="color: white;">{{ name }}</p>
+          </li>
+        </ul>
+      </transition>
     </div>
   </div>
 </template>
@@ -30,13 +32,31 @@
 export default {
   mounted() {
     this.$store.appendObservable(this);
+    window.addEventListener('resize', this.handleResize)
+    console.log(this.width)
   },
   data() {
     return {
-      'token': this.$store.token,
-      'email': this.$store.email,
-      'name': this.$store.name,
-    };
+      token: this.$store.token,
+      email: this.$store.email,
+      name: this.$store.name,
+      width: window.innerWidth,
+      height: window.innerHeight,
+      toggleFlag: false,
+    }
+  },
+  methods: {
+    setFlag() {
+      this.toggleFlag = !this.toggleFlag
+    },
+    handleResize: function() {
+      // resizeのたびにこいつが発火するので、ここでやりたいことをやる
+      this.width = window.innerWidth;
+      this.height = window.innerHeight;
+    }
+  },
+  beforeDestroy: function () {
+    window.removeEventListener('resize', this.handleResize)
   }
 }
 </script>
@@ -98,23 +118,6 @@ export default {
         }
       }
       > ul {
-        padding: 5px;
-        list-style-type: none;
-        > li {
-          padding: 5px;
-          a {
-            font-weight: bold;
-            // color: #2c3e50;
-            color: white;
-            text-decoration-line: none;
-            font-size: 0.8rem;
-
-            &.router-link-exact-active {
-              color: gray;
-            }
-          }
-
-        }
       }
     }
   }
