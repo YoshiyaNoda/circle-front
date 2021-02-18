@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="bgContainer">
-      <img src="../assets/lpblack.jpeg" alt="background image">
+      <!-- <img src="../assets/lpblack.jpeg" alt="background image"> -->
     </div>
     <div class="headingContainer">
       <div class="imgContainer">
@@ -9,10 +9,10 @@
       </div>
       <div class="msgHeadingContainer">
         <h1>ようこそ</h1>
-        <p>たった5分で、<br>あなただけの<br>Webサイトを作りましょう</p>
+        <p>簡単にWebサイトを作りましょう</p>
       </div>
     </div>
-    <div class="content">
+    <!-- <div class="content">
       <div class="account">
         <h1>Intro.</h1>
         <p>多くのサークルや団体には、当たり前のようにホームページ、あるいはWebサイトがありますよね。</p>
@@ -21,7 +21,7 @@
         <p>毎年引き継ぐのは大変ですよね。</p>
         <p>そういった不安を解決するために、このアプリケーションを作りました。</p>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -33,6 +33,8 @@ export default {
 <style lang="scss" scoped>
 .container {
   width: 100%;
+  background-color: rgba(36, 36, 36, 0.9);
+  height: 100%;
   > .content {
     padding: 30px;
     color: white;
@@ -68,9 +70,7 @@ export default {
     }
     > .imgContainer {
       width: 100%;
-      // background-color: black;
       text-align: center;
-      opacity: 0.9;
       > img {
         width: 100%;
       }
