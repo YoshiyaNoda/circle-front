@@ -10,23 +10,25 @@
         </div>
       </div>
       <transition name="togglemenu" @before-enter="beforeEnter" @enter="enter" @before-leave="beforeLeave" @leave="leave">
-        <ul v-show="width > 480 || toggleFlag" ref="accordion">
-          <li>
-            <router-link to="/login">Sign in/up</router-link>
-          </li>
-          <li>
-            <router-link to="/">Home</router-link>
-          </li>
-          <li>
-            <router-link to="/auth/select-articles">Create Web Site</router-link>
-          </li>
-          <!-- <li>
-            <router-link to="/website">Sample</router-link>
-          </li> -->
-          <li>
-            <p style="color: white;">{{ name }}</p>
-          </li>
-        </ul>
+        <div class="listContainer" v-show="width > 480 || toggleFlag">
+          <ul ref="accordion">
+            <li>
+              <router-link to="/login">Sign in/up</router-link>
+            </li>
+            <li>
+              <router-link to="/">Home</router-link>
+            </li>
+            <li>
+              <router-link to="/auth/select-articles">Create Web Site</router-link>
+            </li>
+            <!-- <li>
+              <router-link to="/website">Sample</router-link>
+            </li> -->
+            <li>
+              <p style="color: white;">{{ name }}</p>
+            </li>
+          </ul>
+        </div>
       </transition>
     </div>
   </div>
@@ -52,21 +54,21 @@ export default {
     setFlag() {
       this.toggleFlag = !this.toggleFlag
     },
-    handleResize: function() {
+    handleResize() {
       // resizeのたびにこいつが発火するので、ここでやりたいことをやる
       this.width = window.innerWidth;
       this.height = window.innerHeight;
     },
-    beforeEnter: function(el) {
+    beforeEnter(el) {
       el.style.height = '0'
     },
-    enter: function(el) {
+    enter(el) {
       el.style.height = el.scrollHeight + 'px'
     },
-    beforeLeave: function(el) {
+    beforeLeave(el) {
       el.style.height = el.scrollHeight + 'px'
     },
-    leave: function(el) {
+    leave(el) {
       el.style.height = '0'
     }
   },
@@ -94,23 +96,25 @@ export default {
       display: none;
     }
   }
-  > ul {
-    padding: 5px;
-    list-style-type: none;
-    > li {
+  > .listContainer {
+    > ul {
       padding: 5px;
-      a {
-        font-weight: bold;
-        // color: #2c3e50;
-        color: white;
-        text-decoration-line: none;
-        font-size: 0.8rem;
+      list-style-type: none;
+      > li {
+        padding: 5px;
+        a {
+          font-weight: bold;
+          // color: #2c3e50;
+          color: white;
+          text-decoration-line: none;
+          font-size: 0.8rem;
 
-        &.router-link-exact-active {
-          color: gray;
+          &.router-link-exact-active {
+            color: gray;
+          }
         }
-      }
 
+      }
     }
   }
 }
@@ -182,15 +186,16 @@ export default {
         }
       }
     }
-    > ul {
-      margin: 0;
-      padding: 0 5px;  //縦にpaddingがあると、transitionがうまくいかない!!!!!!!!!!!!
-      height: 200px;
-      > li {
-        // height: 20px;
-        > p {
-          margin: 0;
-          padding: 5px 0;
+    > .listContainer {
+      > ul {
+        margin: 0;
+        padding: 10px 5px;  //縦にpaddingがあると、transitionがうまくいかない!!!!!!!!!!!! => paddingをつけたいならさらに親要素を用意する
+        > li {
+          // height: 20px;
+          > p {
+            margin: 0;
+            padding: 5px 0;
+          }
         }
       }
     }
