@@ -26,7 +26,9 @@ export default {
   background-color: rgba(36, 36, 36, 0.9);
   height: 100%;
   @media screen and (max-width: 480px) {
-    min-height: 1000px;
+    & {
+      min-height: 1000px;
+    }
   }
   > .bgContainer {
     position: fixed;
