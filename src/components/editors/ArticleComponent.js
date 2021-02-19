@@ -26,7 +26,9 @@ export const ArticleComponent = {
       'type': 'paragraph',
       'option': 'normal',
       'data': {
-        'content': '<p>本文</p>'
+        'content': '<p>本文</p>',
+        'textAlign':'left',
+        'padding':10
       }
     }
   },

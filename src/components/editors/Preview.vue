@@ -44,6 +44,8 @@ export default {
     },
     data2html: function() {
       let html = ""
+      let classes = ""
+      let styles = ""
       const length = this.d.length
       for(let i = 0; i < length; i++) {
         const obj = this.d[i]
@@ -53,10 +55,23 @@ export default {
           }
         }
         else if(obj.type === 'paragraph') {
+          classes = ""
+          styles = ""
           if(obj.option === 'normal') {
-            html += '<div class="paddingContainer">' + obj.data.content + '</div>\n'
+            styles += `padding: ${obj.data.padding}%`
           }
-        }
+          if (obj.data.textAlign === 'left'){
+            classes += "paragragh-left "
+          }
+          else if(obj.data.textAlign === 'center'){
+            classes += "paragragh-center "
+          }
+          else if(obj.data.textAlign === 'right'){
+            classes += "paragragh-right "
+          }
+          console.log(classes)
+          html += `<div style="${styles}" class="${classes} ">${obj.data.content}</div>\n`
+        }  
         else if(obj.type === 'image') {
           if(obj.option === 'normal') {
             if(obj.data.url) {
@@ -108,6 +123,18 @@ export default {
     &:hover {
       background-color: rgb(225, 103, 37);
     }
+  }
+}
+
+.paragragh{
+  &-left{
+    text-align: left;
+  }
+  &-center{
+    text-align: center;
+  }
+  &-right{
+    text-align: right;
   }
 }
 </style>
