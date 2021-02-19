@@ -25,7 +25,7 @@ export default {
   color: #2c3e50;
   display: flex;
   justify-content: space-between;
-  min-height: 1000px;
+  min-height: 100vh;
 }
 
 body {
@@ -34,6 +34,7 @@ body {
 }
 .maincontentscontainer {
   width: 100%;
+  height: 100%;
 }
 @media screen and (max-width: 480px) {
   #app {

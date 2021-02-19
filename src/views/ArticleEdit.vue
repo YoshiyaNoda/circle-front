@@ -196,6 +196,7 @@ export default {
 
 <style scoped lang="scss">
 .article-edit-wrapper {
+  min-height: 100vh;
   > .editorArea {
     padding: 30px;
     @media screen and (max-width: 480px) {

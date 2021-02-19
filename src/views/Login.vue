@@ -34,6 +34,7 @@ export default {
   background-color: white;
   height: 100%;
   padding: 40px 70px;
+  min-height: 100vh;
   > .explanation {
     padding: 30px;
   }

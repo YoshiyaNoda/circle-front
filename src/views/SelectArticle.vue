@@ -54,6 +54,7 @@ export default {
   height: 100%;
   padding: 30px 60px;
   background-color: white;
+  min-height: 100vh;
   @media screen and (max-width: 480px) {
     padding: 30px 15px;
   }
