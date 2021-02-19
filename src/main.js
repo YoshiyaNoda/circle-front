@@ -7,7 +7,7 @@ import axios from "axios";
 Vue.config.productionTip = false;
 
 Vue.prototype.$axios = axios.create({
-  baseURL: "https://ysy-api.com/api",
+  baseURL: "http://localhost:8000/api",
   timeout: 10000
 });
 

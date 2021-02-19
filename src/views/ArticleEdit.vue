@@ -21,7 +21,7 @@
         </tr>
         <tr class="articlePropaty">
           <th><span>閲覧用URL</span></th>
-          <td>https://circle-website-creation.com/website/{{ user_id }}/{{ url }}</td>
+          <td>https://circle-website-creation.com/website/{{ encrypted_user_id }}/{{ url }}</td>
         </tr>
       </table>
       <div class="main-editor-container">
@@ -102,7 +102,7 @@ export default {
       articleData: [],
       title: '',
       url: '',
-      user_id: 0,
+      encrypted_user_id: 0,
       displayedTypeSelect: -1,
       selectedTab: 1,
       selectedImageEditor: null
@@ -181,7 +181,7 @@ export default {
           }
           this.title = res.data.title
           this.url = res.data.url
-          this.user_id = res.data.user_id
+          this.encrypted_user_id = res.data.encrypted_user_id
         }).catch(e => {
           console.log(e)
           alert("データの取得に失敗しました")
