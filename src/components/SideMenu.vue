@@ -12,18 +12,15 @@
       <transition name="togglemenu" @before-enter="beforeEnter" @enter="enter" @before-leave="beforeLeave" @leave="leave">
         <div class="listContainer" v-show="width > 480 || toggleFlag">
           <ul ref="accordion">
-            <li>
+            <li @click="setFlag">
               <router-link to="/login">Sign in/up</router-link>
             </li>
-            <li>
+            <li @click="setFlag">
               <router-link to="/">Home</router-link>
             </li>
-            <li>
+            <li @click="setFlag">
               <router-link to="/auth/select-articles">Create Web Site</router-link>
             </li>
-            <!-- <li>
-              <router-link to="/website">Sample</router-link>
-            </li> -->
             <li>
               <p style="color: white;">{{ name }}</p>
             </li>
