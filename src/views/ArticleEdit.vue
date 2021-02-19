@@ -21,7 +21,7 @@
         </tr>
         <tr class="articlePropaty">
           <th><span>閲覧用URL</span></th>
-          <td>https://circle-website-creation.com/website/{{ encrypted_user_id }}/{{ url }}</td>
+          <td><span class="pageLink">https://circle-website-creation.com/website/{{ encrypted_user_id }}/{{ url }}</span></td>
         </tr>
       </table>
       <div class="main-editor-container">
@@ -415,6 +415,10 @@ table {
         appearance: none;
         outline: none;
         border: none;
+        width: 100%;
+      }
+      > .pageLink {
+        word-break: break-all;
         width: 100%;
       }
     }
