@@ -10,7 +10,7 @@
         </div>
       </div>
       <transition name="togglemenu" @before-enter="beforeEnter" @enter="enter" @before-leave="beforeLeave" @leave="leave">
-        <ul v-show="width > 480 || toggleFlag">
+        <ul v-show="width > 480 || toggleFlag" ref="accordion">
           <li>
             <router-link to="/login">Sign in/up</router-link>
           </li>
@@ -67,8 +67,7 @@ export default {
       el.style.height = el.scrollHeight + 'px'
     },
     leave: function(el) {
-      const func = () => el.style.height = '0' //これで要素が消えるまで待って、カクツキを抑えられた
-      setTimeout(func, 250)
+      el.style.height = '0'
     }
   },
   beforeDestroy: function () {
@@ -115,8 +114,12 @@ export default {
     }
   }
 }
-.togglemenu-enter-active, .togglemenu-leave-active {
+.togglemenu-enter-active {
   transition: .35s;
+}
+.togglemenu-leave-active {
+  transition: .35s;
+  height: 0;
 }
 .togglemenu-enter, .togglemenu-leave-to {
   opacity: 0;
@@ -138,8 +141,10 @@ export default {
       > .toggleBtn {
         display: block;
         float: right;
-        // position: relative;
-        padding: 5px;
+        position: relative;
+        right: 25px;
+        top: 5px;
+        padding: 0px;
         > span {
           font-size: 14px;
           width: 25px;
@@ -150,21 +155,21 @@ export default {
           transition: .35s ease-in-out;
           padding: 0;
           box-sizing: border-box;
-          position: relative;
+          position: absolute;
         }
         span:nth-child(1) {
-          top: 5px;
+          top: 4px;
         }
         span:nth-child(2) {
           top: 11px;
         }
         span:nth-child(3) {
-          top: 17px;
+          top: 18px;
         }
       }
       > .active {
         span:nth-child(1) {
-          top: 12.5px;
+          top: 11px;
           transform: rotate(45deg);
         }
         span:nth-child(2) {
@@ -172,14 +177,15 @@ export default {
           left: 50%;
         }
         span:nth-child(3) {
-          top: 9.5px;
+          top: 11px;
           transform: rotate(-45deg);
         }
       }
     }
     > ul {
       margin: 0;
-      padding: 10px 0;
+      padding: 0 5px;  //縦にpaddingがあると、transitionがうまくいかない!!!!!!!!!!!!
+      height: 200px;
       > li {
         // height: 20px;
         > p {
