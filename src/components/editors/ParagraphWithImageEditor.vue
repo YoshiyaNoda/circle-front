@@ -1,35 +1,26 @@
 <template>
-    <div class="paragraphEditorContainer">
+    <div :class="{ paragraphWithImageEditorContainer: true, active: isActive }">
       <div class="customBtnContainer">
         <button @click="makeStrong">強調</button>
-        <!-- <button @click="makeLeft">左揃え</button>
+        <button @click="makeLeft">左揃え</button>
         <button @click="makeCenter">中央揃え</button>
-        <button @click="makeRight">右揃え</button> -->
-        整列<select v-model="selectAlign" v-on:change="textAlign">
-          <option value="left">左揃え</option>
-          <option value="center">中央揃え</option>
-          <option value="right">右揃え</option>
-        </select>
-        <!-- <input type="textbox" v-model="paddingCount"> -->
-        間隔<select v-model="selectPadding" v-on:change="paddingCount">
-          <option value="large">大</option>
-          <option value="middle">中</option>
-          <option value="small">小</option>
-        </select>
+        <button @click="makeRight">右揃え</button>
+        <!-- padding<input type="textbox" v-model="paddingCount">         -->
         <button class="deleteBtn" @click="deleteMe"><i class="fas fa-trash-alt fa-lg"></i></button>
       </div>
+      <div class="paragraphWithImageEditor" @click="setMySelfToSelector">
+        <img :src="d.data.url ? d.data.url: require('@/assets/live.jpg')" alt="画像">
+      </div>
       <div contenteditable="true" @input="sync" ref="wysiwygEditor" role="textbox" aria-multiline="true" class="paragraphEditor"></div>
+
     </div>
-    <!-- <textarea type="text" v-model="d.data.content"></textarea> -->
 </template>
 
 <script>
 export default {
   mounted: function() {
-    this.syncFromData()
-    this.selectPadding = this.d.data.padding;
-    this.selectAlign = this.d.data.textAlign;
-
+     this.syncFromData()
+    // this.paddingCount = this.d.data.padding;
   },
   props: {
     articleData: new Object()
@@ -37,15 +28,35 @@ export default {
   data: function() {
     return {
       d: this.articleData,
-      selectPadding : "",
-      selectAlign:""
+      isActive: false,
+      // paddingCount : ""
     }
   },
   methods: {
     deleteMe() {
       this.$parent.$parent.deleteArticle(this.d)
+      if(this.$imageSelectorStore.checkIsImageEditorSet() === this) { // なんか煩雑になってきたな...
+        this.$imageSelectorStore.setSelectedImageEditor(null)
+      }
     },
-    makeStrong() {
+    setActive(boolean) {
+      this.isActive = boolean;
+    },
+    setURL(url) {
+      this.d.data.url = url
+    },
+    setMySelfToSelector() {
+      if(this.$imageSelectorStore.checkIsImageEditorSet() === this) {
+        this.$imageSelectorStore.setSelectedImageEditor(null)
+      } else if(this.$imageSelectorStore.checkIsImageEditorSet()) {
+        this.$imageSelectorStore.setSelectedImageEditor(null)
+        const func = () =>  this.$imageSelectorStore.setSelectedImageEditor(this)
+        setTimeout(func, 200)
+      } else {
+        this.$imageSelectorStore.setSelectedImageEditor(this)
+      }
+    },
+        makeStrong() {
       const selection = window.getSelection()
       if(selection.rangeCount > 0 && !selection.isCollapsed) {
         const range = selection.getRangeAt(0)
@@ -59,47 +70,18 @@ export default {
         this.sync()
       }
     },
-    textAlign:function(){
-      switch(this.selectAlign){
-        case "left":
-          this.d.data.textAlign = "left"      
-          console.log(this.d.data.textAlign);
-          break;
-        case "center":
-          this.d.data.textAlign = "center"
-          break;
-        case "right":
-          this.d.data.textAlign = "right"
-          break;
-
-      }
+    makeLeft(){
+      this.d.data.textAlign = "left";
+      console.log(this.d.data.textAlign);
     },
-    paddingCount: function(){
-      switch(this.selectPadding){
-        case "large":
-          this.d.data.padding =  100   
-          break;
-        case "middle":
-          this.d.data.padding = 50
-          break;
-        case "small":
-          this.d.data.padding = 20
-          break;
-
-      }    
+    makeCenter(){
+      this.d.data.textAlign = "center";
+      console.log(this.d.data.textAlign);
     },
-    // makeLeft(){
-    //   this.d.data.textAlign = "left";
-    //   console.log(this.d.data.textAlign);
-    // },
-    // makeCenter(){
-    //   this.d.data.textAlign = "center";
-    //   console.log(this.d.data.textAlign);
-    // },
-    // makeRight(){
-    //   this.d.data.textAlign = "right";
-    //   console.log(this.d.data.textAlign);
-    // },
+    makeRight(){
+      this.d.data.textAlign = "right";
+      console.log(this.d.data.textAlign);
+    },
     sync() {
       let html = this.$refs.wysiwygEditor.innerHTML
       if(html.substring(0, 2) !== "<p") {
@@ -125,14 +107,17 @@ export default {
     articleData: function(data) {
       this.d = data
       this.syncFromData()
-    }
-    
+    },
+        paddingCount: function(){
+      this.d.data.padding = this.paddingCount;
+      console.log(this.d.data.padding)
+    },
   },
 }
 </script>
 
 <style lang="scss" scoped> // scopedにするとv-dataが追加されてしまう。
-.paragraphEditorContainer {
+.paragraphWithImageEditorContainer {
   border-radius: 0px;
   border: solid 1px rgba(0,0,0,.1);
   width: 80%;
@@ -164,8 +149,9 @@ export default {
       }
     }
   }
-  > .paragraphEditor {
-    width: 100%;
+  > .paragraphWithImageEditor {
+    width: 40%;
+    margin: 0 0 0 0;
     height: 200px;
     overflow-y: scroll;
     -webkit-appearance: none;
@@ -173,7 +159,39 @@ export default {
     appearance: none;
     outline: none;
     padding: 10px;
+    background-color: #ECECEC;
+    background-image: -webkit-gradient(linear, 0 0, 100% 100%,color-stop(.25, #F9F9F9), color-stop(.25, transparent),color-stop(.5, transparent), color-stop(.5, #F9F9F9),color-stop(.75, #F9F9F9), color-stop(.75, transparent),to(transparent));
+    -webkit-background-size: 14px 14px;
+    background-size: 14px 14px;
     box-sizing: border-box;
+    display: inline-block;
+    cursor: pointer;
+    &:hover {
+      opacity: 0.6;
+    }
+    > img {
+      width: 100%;
+    }
   }
+  > .paragraphEditor {
+    width: 40%;
+    height: 200px;
+    margin: 0 0 0 auto;
+    overflow-y: scroll;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: none;
+    padding: 10px;
+    box-sizing: border-box;
+    display:inline-block;
+  }
+}
+.active {
+  border: solid 1px rgb(255, 111, 1);
+  &:hover {
+    border: solid 1px rgb(255, 111, 1);
+  }
+
 }
 </style>

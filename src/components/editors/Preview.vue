@@ -50,15 +50,28 @@ export default {
       for(let i = 0; i < length; i++) {
         const obj = this.d[i]
         if(obj.type === 'heading') {
+          classes = ""
+          styles = ""
           if(obj.option === 'normal') {
-            html += '<div class="paddingContainer">' + obj.data.content + '</div>\n'
+            styles += `padding: ${obj.data.padding}%`
           }
+          if (obj.data.textAlign === 'left'){
+            classes += "paragragh-left "
+          }
+          else if(obj.data.textAlign === 'center'){
+            classes += "paragragh-center "
+          }
+          else if(obj.data.textAlign === 'right'){
+            classes += "paragragh-right "
+          }
+          console.log(classes)
+          html += `<div class="${classes} ">${obj.data.content}</div>\n`
         }
         else if(obj.type === 'paragraph') {
           classes = ""
           styles = ""
           if(obj.option === 'normal') {
-            styles += `padding: ${obj.data.padding}%`
+            styles += `padding-top: ${obj.data.padding}px`
           }
           if (obj.data.textAlign === 'left'){
             classes += "paragragh-left "
@@ -81,6 +94,15 @@ export default {
             }
           }
         }
+        else if(obj.type === 'paragraphWithImage'){
+          if(obj.option === 'normal') {
+            if(obj.data.url) {
+              html += `<div class="imageContainer"><img src="${obj.data.url}" alt="画像"><div class="imageParagraph">${obj.data.content}</div></div>\n`
+            } else {
+              html += `<div class="imageContainer"><img src="${require('@/assets/live.jpg')}" alt="画像"><div class="imageParagraph">${obj.data.content}</div></div>\n`
+            }
+          }
+        }
       }
       return html
     }
@@ -97,9 +119,20 @@ export default {
   padding: 20px 60px;
 }
 .imageContainer {
-  width: 100%;
+  position: relative;
+  // width: 100%；
   > img {
     width: 100%;
+  }
+  > .imageParagraph {
+    position:absolute;
+    top:50%;
+    left:50%;
+    -ms-transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    margin:0;
+    padding:0;
   }
 }
 .previewBtnContainer {

@@ -37,6 +37,9 @@
               <div class="typeSelectBtnContainer">
                 <button @click="addElement(0, 'image')"><span>画像</span></button>
               </div>
+              <div class="typeSelectBtnContainer">
+                <button @click="addElement(0, 'paragraphWithImage')"><span>画像付きテキスト</span></button>
+              </div>
             </div>
           </div>
           <div class="addBtnContainer">
@@ -61,6 +64,9 @@
               </div>
               <div class="typeSelectBtnContainer">
                 <button @click="addElement(d.order+1, 'image')"><span>画像</span></button>
+              </div>
+              <div class="typeSelectBtnContainer">
+                <button @click="addElement(d.order+1, 'paragraphWithImage')"><span>画像付きテキスト</span></button>
               </div>
             </div>
           </div>

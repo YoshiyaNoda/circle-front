@@ -1,7 +1,9 @@
 <template>
     <div class="headingEditorContainer">
       <div class="customBtnContainer">
-        <!-- <button @click="makeStrong">色とか?</button> -->
+        <button @click="makeLeft">左揃え</button>
+        <button @click="makeCenter">中央揃え</button>
+        <button @click="makeRight">右揃え</button>        
         <button class="deleteBtn" @click="deleteMe"><i class="fas fa-trash-alt fa-lg"></i></button>
       </div>
       <div contenteditable="true" @input="sync" ref="wysiwygEditor" role="textbox" class="headingEditor" v-on:keydown.enter.exact.prevent></div>
@@ -39,6 +41,18 @@ export default {
         // }
         this.sync()
       }
+    },
+    makeLeft(){
+      this.d.data.textAlign = "left";
+      console.log(this.d.data.textAlign);
+    },
+    makeCenter(){
+      this.d.data.textAlign = "center";
+      console.log(this.d.data.textAlign);
+    },
+    makeRight(){
+      this.d.data.textAlign = "right";
+      console.log(this.d.data.textAlign);
     },
     sync() {
       let html = this.$refs.wysiwygEditor.innerHTML

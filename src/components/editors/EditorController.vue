@@ -9,6 +9,9 @@
     <div v-if="articleData.type === 'image'">
       <ImageEditor :article-data="d"/>
     </div>
+    <div v-if="articleData.type === 'paragraphWithImage'">
+      <ParagraphWithImageEditor :article-data="d"/>
+    </div>
   </div>
 </template> 
 
@@ -16,12 +19,14 @@
 import HeadingEditor from '@/components/editors/HeadingEditor.vue'
 import ParagraphEditor from '@/components/editors/ParagraphEditor.vue'
 import ImageEditor from '@/components/editors/ImageEditor.vue'
+import ParagraphWithImageEditor from '@/components/editors/ParagraphWithImageEditor.vue'
 
 export default {
   components: {
     HeadingEditor,
     ParagraphEditor,
     ImageEditor,
+    ParagraphWithImageEditor,
   },
   data: function() {
     return {

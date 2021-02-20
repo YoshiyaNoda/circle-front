@@ -7,7 +7,9 @@ export const ArticleComponent = {
       'type': 'heading',
       'option': 'normal',
       'data': {
-        'content': '<h1>見出しサンプル</h1>'
+        'content': '<h1>見出しサンプル</h1>',
+        'textAlign':'left',
+
       }
     },
     'with_image': {
@@ -39,6 +41,17 @@ export const ArticleComponent = {
       'option': 'normal',
       'data': {
         'content': '',
+        'url': ''
+      }
+    }
+  },
+  'paragraphWithImage': {
+    'normal': {
+      'order': 0,
+      'type': 'paragraphWithImage',
+      'option': 'normal',
+      'data': {
+        'content': '<p>本文</p>',
         'url': ''
       }
     }
