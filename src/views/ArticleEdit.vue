@@ -109,8 +109,12 @@ export default {
     }
   },
   mounted() {
-    this.fetchArticleData()
-    this.$imageSelectorStore.register(this)
+    if(this.$store.selectedArticleId) {
+      this.fetchArticleData()
+      this.$imageSelectorStore.register(this)
+    } else {
+      this.$router.push({ path: '/auth/select-articles' })
+    }
   },
   methods: {
     deleteArticle(article) {
