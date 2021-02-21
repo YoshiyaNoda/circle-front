@@ -2,9 +2,14 @@
     <div :class="{ paragraphWithImageEditorContainer: true, active: isActive }">
       <div class="customBtnContainer">
         <button @click="makeStrong">強調</button>
-        <button @click="makeLeft">左揃え</button>
-        <button @click="makeCenter">中央揃え</button>
-        <button @click="makeRight">右揃え</button>
+        <button @click="makeColor">色変更</button>
+        <select v-model="selectColor">
+        <option value="red">赤</option>
+        <option value="black">黒</option>
+        <option value="white">白</option>
+        </select>
+        <button class="shadow" @click="makeShadow">影</button>
+
         <!-- padding<input type="textbox" v-model="paddingCount">         -->
         <button class="deleteBtn" @click="deleteMe"><i class="fas fa-trash-alt fa-lg"></i></button>
       </div>
@@ -17,6 +22,7 @@
 </template>
 
 <script>
+
 export default {
   mounted: function() {
      this.syncFromData()
@@ -29,7 +35,8 @@ export default {
     return {
       d: this.articleData,
       isActive: false,
-      // paddingCount : ""
+      selectColor:""
+
     }
   },
   methods: {
@@ -37,6 +44,23 @@ export default {
       this.$parent.$parent.deleteArticle(this.d)
       if(this.$imageSelectorStore.checkIsImageEditorSet() === this) { // なんか煩雑になってきたな...
         this.$imageSelectorStore.setSelectedImageEditor(null)
+      }
+    },
+    makeColor() {
+      const selection = window.getSelection()
+      if(selection.rangeCount > 0 && !selection.isCollapsed) {
+        const range = selection.getRangeAt(0)
+        const color = document.createElement('span')
+        console.log("span")        
+        color.className = `text-${this.selectColor}`
+        try {
+          range.surroundContents(color)
+        } catch(e) {
+          console.log(e)
+          alert('範囲選択が不適切です。')
+        }
+
+        this.sync()
       }
     },
     setActive(boolean) {
@@ -56,7 +80,7 @@ export default {
         this.$imageSelectorStore.setSelectedImageEditor(this)
       }
     },
-        makeStrong() {
+    makeStrong() {
       const selection = window.getSelection()
       if(selection.rangeCount > 0 && !selection.isCollapsed) {
         const range = selection.getRangeAt(0)
@@ -70,17 +94,16 @@ export default {
         this.sync()
       }
     },
-    makeLeft(){
-      this.d.data.textAlign = "left";
-      console.log(this.d.data.textAlign);
-    },
-    makeCenter(){
-      this.d.data.textAlign = "center";
-      console.log(this.d.data.textAlign);
-    },
-    makeRight(){
-      this.d.data.textAlign = "right";
-      console.log(this.d.data.textAlign);
+    makeShadow(){
+      console.log(this.d.data)
+      // if(this.d,data.shadow === 1){
+      //   this.d.data.shadow = 0
+      //   document.getElementsByClassName("shadow").classlist.add("isActive")
+      // }else{
+      //   this.d.data.shadow = 1
+      //   document.getElementsByClassName("shadow").classlist.toggle("isActive")
+      // }
+
     },
     sync() {
       let html = this.$refs.wysiwygEditor.innerHTML
@@ -105,13 +128,13 @@ export default {
   },
   watch: {
     articleData: function(data) {
+      console.log("watch",this.d)
       this.d = data
       this.syncFromData()
     },
-        paddingCount: function(){
-      this.d.data.padding = this.paddingCount;
-      console.log(this.d.data.padding)
-    },
+    d(data) {
+      console.log("watchd",data)
+    }
   },
 }
 </script>
@@ -139,6 +162,10 @@ export default {
       margin: 0 5px;
       &:hover {
         background-color: rgba(0,0,0,.1);
+      }
+      > .isActive{
+        background-color: rgba(0,0,0,.1);
+
       }
     }
     > .deleteBtn {

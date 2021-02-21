@@ -170,4 +170,16 @@ export default {
     text-align: right;
   }
 }
+.text{
+  &-white{
+    color: white;
+  }
+  &-black{
+    color: black;
+  }
+  &-red{
+    color: red;
+  }
+}
+
 </style>

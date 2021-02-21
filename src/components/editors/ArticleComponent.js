@@ -30,7 +30,7 @@ export const ArticleComponent = {
       'data': {
         'content': '<p>本文</p>',
         'textAlign':'left',
-        'padding':10
+        'padding':20
       }
     }
   },
@@ -41,7 +41,9 @@ export const ArticleComponent = {
       'option': 'normal',
       'data': {
         'content': '',
-        'url': ''
+        'padding': 20,
+        'url': '',
+
       }
     }
   },
@@ -52,6 +54,8 @@ export const ArticleComponent = {
       'option': 'normal',
       'data': {
         'content': '<p>本文</p>',
+        'padding': 20,
+        'shadow': 1,
         'url': ''
       }
     }

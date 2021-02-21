@@ -2,6 +2,12 @@
     <div class="paragraphEditorContainer">
       <div class="customBtnContainer">
         <button @click="makeStrong">強調</button>
+        <button @click="makeColor">色変更</button>
+        <select v-model="selectColor" v-on:change="changeColor">
+        <option value="red">赤</option>
+        <option value="black">黒</option>
+        <option value="white">白</option>
+        </select>
         <!-- <button @click="makeLeft">左揃え</button>
         <button @click="makeCenter">中央揃え</button>
         <button @click="makeRight">右揃え</button> -->
@@ -38,7 +44,8 @@ export default {
     return {
       d: this.articleData,
       selectPadding : "",
-      selectAlign:""
+      selectAlign:"",
+      selectColor:""
     }
   },
   methods: {
@@ -52,6 +59,21 @@ export default {
         const strong = document.createElement('strong')
         try {
           range.surroundContents(strong)
+        } catch(e) {
+          console.log(e)
+          alert('範囲選択が不適切です。')
+        }
+        this.sync()
+      }
+    },
+    makeColor() {
+      const selection = window.getSelection()
+      if(selection.rangeCount > 0 && !selection.isCollapsed) {
+        const range = selection.getRangeAt(0)
+        const color = document.createElement('span')
+        color.className = `text-${this.selectColor}`
+        try {
+          range.surroundContents(color)
         } catch(e) {
           console.log(e)
           alert('範囲選択が不適切です。')
@@ -83,6 +105,20 @@ export default {
           this.d.data.padding = 50
           break;
         case "small":
+          this.d.data.padding = 20
+          break;
+
+      }    
+    },
+    changeColor: function(){
+      switch(this.selectColor){
+        case "red":
+          this.d.data.padding =  100   
+          break;
+        case "white":
+          this.d.data.padding = 50
+          break;
+        case "black":
           this.d.data.padding = 20
           break;
 
@@ -175,5 +211,7 @@ export default {
     padding: 10px;
     box-sizing: border-box;
   }
+   
 }
+
 </style>
