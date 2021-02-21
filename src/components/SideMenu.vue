@@ -30,7 +30,7 @@ export default {
   },
   data() {
     return {
-      'token': this.$store.token,
+      'login': this.$store.login,
       'email': this.$store.email,
       'name': this.$store.name,
     };

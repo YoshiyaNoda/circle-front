@@ -25,11 +25,11 @@ export default {
   },
   methods: {
     async saveRawHTML() {
-      if(this.$store.checkTokenIsSet) {
+      if(this.$store.login) {
         const url = "save-raw-HTMl"
         const params = new URLSearchParams()
         params.append('rawHTML', this.data2html())
-        params.append('token', this.$store.token)
+        //params.append('token', this.$store.token)
         params.append('articleId', this.$store.selectedArticleId)
         await this.$axios.post(url, params).then(res => {
           console.log(res)
