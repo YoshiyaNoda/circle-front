@@ -95,12 +95,21 @@ export default {
           }
         }
         else if(obj.type === 'paragraphWithImage'){
+          classes = ""
+          styles = ""
           if(obj.option === 'normal') {
-            if(obj.data.url) {
-              html += `<div class="imageContainer"><img src="${obj.data.url}" alt="画像"><div class="imageParagraph">${obj.data.content}</div></div>\n`
-            } else {
-              html += `<div class="imageContainer"><img src="${require('@/assets/live.jpg')}" alt="画像"><div class="imageParagraph">${obj.data.content}</div></div>\n`
+            if(obj.data.shadow){
+            classes +="text-shadow"
+            console.log(classes)
+
             }
+            if(obj.data.url) {
+              html += `<div class="imageContainer"><img src="${obj.data.url}" alt="画像"><div class="imageParagraph ${classes}">${obj.data.content}</div></div>\n`
+            } else {
+              html += `<div class="imageContainer"><img src="${require('@/assets/live.jpg')}" alt="画像"><div class="imageParagraph ${classes}">${obj.data.content}</div></div>\n`
+            }
+
+
           }
         }
       }
@@ -179,6 +188,10 @@ export default {
   }
   &-red{
     color: red;
+  }
+  &-shadow{
+    text-shadow: 0 0 5px black;
+
   }
 }
 

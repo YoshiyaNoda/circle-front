@@ -36,6 +36,11 @@ export default {
   props: {
     articleData: new Object()
   },
+  mounted() {
+    if(this.articleData.type === "paragraphWithImage") {
+      console.log("hoge",this.articleData)
+    }
+  },
   watch: {
     // こうやってpropsは監視して、dataを子コンポーネントに渡さないと、おかしなことが起こる
     articleData: function(data) {

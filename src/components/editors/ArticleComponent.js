@@ -34,6 +34,19 @@ export const ArticleComponent = {
       }
     }
   },
+  'paragraphWithImage': {
+    'normal': {
+      'order': 0,
+      'type': 'paragraphWithImage',
+      'option': 'normal',
+      'data': {
+        'content': '<p>変更</p>',
+        'paddingHoge': 20,
+        'shadow': false,
+        'url': ''
+      },
+    }
+  },
   'image': {
     'normal': {
       'order': 0,
@@ -47,17 +60,5 @@ export const ArticleComponent = {
       }
     }
   },
-  'paragraphWithImage': {
-    'normal': {
-      'order': 0,
-      'type': 'paragraphWithImage',
-      'option': 'normal',
-      'data': {
-        'content': '<p>本文</p>',
-        'padding': 20,
-        'shadow': 1,
-        'url': ''
-      }
-    }
-  }
+  
 }

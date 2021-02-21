@@ -36,7 +36,6 @@ export default {
       d: this.articleData,
       isActive: false,
       selectColor:""
-
     }
   },
   methods: {
@@ -95,14 +94,17 @@ export default {
       }
     },
     makeShadow(){
-      console.log(this.d.data)
-      // if(this.d,data.shadow === 1){
-      //   this.d.data.shadow = 0
-      //   document.getElementsByClassName("shadow").classlist.add("isActive")
-      // }else{
-      //   this.d.data.shadow = 1
-      //   document.getElementsByClassName("shadow").classlist.toggle("isActive")
-      // }
+      console.log(this.d)
+      if(this.d.data.shadow){
+        this.d.data.shadow = false
+        console.log(this.d.data.shadow)
+        // document.getElementsByClassName("shadow").classlist.add("isActive")
+      }else{
+        this.d.data.shadow = true
+        console.log(this.d.data.shadow)
+
+        // document.getElementsByClassName("shadow").classlist.toggle("isActive")
+      }
 
     },
     sync() {
