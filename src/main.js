@@ -8,12 +8,18 @@ Vue.config.productionTip = false;
 
 Vue.prototype.$axios = axios.create({
   baseURL: "http://localhost:8000/api",
-  timeout: 10000
+  timeout: 10000,
+  withCredentials: true,
+  headers:{
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods':'*',
+    'Access-Control-Allow-Headers':'*'
+  }
 });
 
 const store = {
   // token: 'ya29.a0AfH6SMBMynDVhDXaeauqakgHX7CgtJP8rjJCGhOuQueTyu0bKUV3Qv4rL0WSCYDlpp370yC7tBof6EHQPk2znvCvUWYrVU0ymIJprG9Zv_ZN5col988R43yhJpmggF7eVoigJgHD584uXBeSYayF_xveQpUsO5dxSxHJGFxL2JU', //デバッグ用
-  token: '',
+  login: false,
   email: '',
   name: '',
   selectedArticleId: 0,
@@ -34,12 +40,12 @@ const store = {
     this.ObservableComponetns.push(component);
   },
   updateUserData(ele, queries) {
-    ele.token = queries.token;
+    ele.login = queries.login;
     ele.email = queries.email;
     ele.name = queries.name;
   },
   checkTokenIsSet() {
-    return this.token;
+    return this.login;
   }
 };
 
@@ -76,24 +82,31 @@ const imageSelectorStore = {
 Vue.prototype.$store = store;
 Vue.prototype.$imageSelectorStore = imageSelectorStore;
 
-new Vue({
-  router,
-  render: h => h(App),
-  created(){
-    if(!this.$store.checkTokenIsSet()){
-      this.$axios.get("session-token",{withCredentials: true}).then((response) => {
-       const userData =
-       {
-         'token':response.data[0].token,
-         'email':response.data[0].email,
-         'name':response.data[0].name
-       };
-       //this.$store.appendObservable(this);
-       this.$store.setUserData(userData);
-       this.$router.push({ path: '/auth/select-articles' });
-       //console.log(response.data[0].token)
-       
-      });
-    }
-  }
-}).$mount("#app");
+
+const func = async function(){
+  await axios.get("http://localhost:8000/api/get-user",{withCredentials: true}).then(response => {
+    const userData =
+    {
+      'login':true,
+      'email':response.data.email,
+      'name':response.data.name
+    };
+    //this.$store.appendObservable(this);
+    store.setUserData(userData);
+
+    
+  }).catch(e=>{
+    console.log(e);
+    //alert("セッションの有効期限が切れました。再ログインしてください。")
+  })
+  new Vue({
+    router,
+    render: h => h(App),
+  }).$mount("#app");
+
+}
+
+func();
+
+
+

@@ -55,13 +55,13 @@ export default {
       return "ok";
     },
     async create() {
-      if(this.$store.checkTokenIsSet()) {
+      if(this.$store.login) {
         if(this.validation() === "ok") {
           const url = "create-article"
           const params = new URLSearchParams()
           params.append('title', this.title)
           params.append('url', this.url)
-          params.append('token', this.$store.token)
+          //params.append('token', this.$store.token)
           await this.$axios.post(url, params).then(_ => {
             console.log(_);
           }).catch(e => {

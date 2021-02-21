@@ -124,20 +124,23 @@ export default {
       })
     },
     async saveArticleData() {
-      if(this.$store.checkTokenIsSet()) {
+      if(this.$store.login) {
         const url = "save-article-data"
         const params = new URLSearchParams()
         params.append('articleData', JSON.stringify(this.articleData))
         params.append('articleId', this.$store.selectedArticleId)
         params.append('title', this.title)
         params.append('url', this.url)
-        params.append('token', this.$store.token)
         await this.$axios.post(url, params).then(res => {
           console.log(res)
           alert('更新しました。')
         }).catch(e => {
-          alert('データの更新に失敗しました。')
           console.log(e)
+          alert('データの更新に失敗しました。')
+          // if(e.response.status===401){
+          //   alert('セッションの有効期限が切れました')
+          //   this.$router.push({ path: '/login' })
+          // };
         })
       } else {
         this.$router.push({ path: '/login' })
@@ -170,10 +173,10 @@ export default {
       this.displayedTypeSelect = -1
 		},
     async fetchArticleData() {
-      if(this.$store.checkTokenIsSet()) {
+      if(this.$store.login) {
         const url = "fetch-article-data"
         const params = new URLSearchParams()
-        params.append('token', this.$store.token)
+        //params.append('token', this.$store.token)
         params.append('articleId', this.$store.selectedArticleId)
         await this.$axios.post(url, params).then(res => {
           if(res.data.json) {

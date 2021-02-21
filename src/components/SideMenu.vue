@@ -3,11 +3,8 @@
     <div class="linkContainer">
       <h1>LOGO</h1>
       <ul>
-        <li v-if="token === ''">
+        <li>
           <router-link to="/login">Sign in/up</router-link>
-        </li>
-        <li v-else>
-          <router-link to="/logout">Sign out</router-link>
         </li>
         <li>
           <router-link to="/">Home</router-link>
@@ -33,7 +30,7 @@ export default {
   },
   data() {
     return {
-      'token': this.$store.token,
+      'login': this.$store.login,
       'email': this.$store.email,
       'name': this.$store.name,
     };

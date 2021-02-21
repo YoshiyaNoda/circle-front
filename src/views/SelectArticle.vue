@@ -31,13 +31,15 @@ export default {
       this.$router.push({ path: '/auth/edit-article' })
     },
     async fetchArticleList() {
-      if(this.$store.checkTokenIsSet()) {
-        // tokenがあるかどうかを確認する処理をする。
+      if(this.$store.login) {
+        // ログインしているかを確認する処理をする。
         const url = "fetch-article-list";
         const params = new URLSearchParams();
-        params.append('token', this.$store.token);
         await this.$axios.post(url, params).then(res => {
           this.articleList = res.data;
+        }).catch(e => {
+          alert('データの取得に失敗しました。')
+          console.log(e)
         });
       } else {
         this.$router.push({ path: '/login' });
