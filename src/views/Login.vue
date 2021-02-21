@@ -34,6 +34,10 @@ export default {
   background-color: white;
   height: 100%;
   padding: 40px 70px;
+  min-height: 100vh;
+  @media screen and (max-width: 480px) {
+    padding: 10px 0;
+  }
   > .explanation {
     padding: 30px;
   }

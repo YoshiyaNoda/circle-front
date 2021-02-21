@@ -31,7 +31,7 @@ export default {
       if(paths[3]) {
         const url = "fetch-raw-HTML"
         const params = new URLSearchParams()
-        params.append('userId', Number(paths[2]))
+        params.append('encrypted_user_id', paths[2])
         params.append('articleURL', paths[3])
         await this.$axios.post(url, params).then(res => {
           if(res.data) {
@@ -49,5 +49,6 @@ export default {
   width: 100%;
   height: 100%;
   background-color: #ffffff;
+  min-height: 100vh;
 }
 </style>

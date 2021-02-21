@@ -56,10 +56,17 @@ export default {
   height: 100%;
   padding: 30px 60px;
   background-color: white;
+  min-height: 100vh;
+  @media screen and (max-width: 480px) {
+    padding: 30px 15px;
+  }
 }
 .articlelist-container {
   width: 80%;
   margin: 30px auto;
+  @media screen and (max-width: 480px) {
+    width: 95%;
+  }
   > ul {
     border: solid 1px rgba(0,0,0,.1);
     list-style-type: none;
