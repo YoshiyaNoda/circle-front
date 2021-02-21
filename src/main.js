@@ -10,11 +10,6 @@ Vue.prototype.$axios = axios.create({
   baseURL: "http://localhost:8000/api",
   timeout: 10000,
   withCredentials: true,
-  headers:{
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Methods':'*',
-    'Access-Control-Allow-Headers':'*'
-  }
 });
 
 const store = {
